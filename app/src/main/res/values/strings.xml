@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MathPower</string>
+    <string name="welcomeText">Hello And Welcome</string>
+    <string name="playText">Play</string>
+    <string name="settings">Settings</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="practiceeMode">Practice Mode</string>
+    <string name="first_DOB">Enter Your Age:</string>
 </resources>
