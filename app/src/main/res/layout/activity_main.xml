@@ -1,18 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.michaelkatan.mathpower.MainActivity">
+    android:background="@color/backgroundColor"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="@string/welcomeText"
+        android:textSize="35sp"
+        android:background="@drawable/main_text_frame"
+        android:padding="10dp"
+        android:id="@+id/mainText"
+        android:elevation="6dp"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mainText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="@string/playText"
+        android:textSize="25sp"
+        style="@style/mainButtonStyle"
+        android:id="@+id/play_btn"
+        />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_below="@id/play_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/settings"
+        android:textSize="25sp"
+        style="@style/mainButtonStyle"
+        android:id="@+id/settings_btn"
+        />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settings_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/leaderboard"
+        android:textSize="25sp"
+        style="@style/mainButtonStyle"
+        android:id="@+id/leaderboard_btn"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/leaderboard_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Practice Mode"
+        android:textSize="25dp"
+        style="@style/mainButtonStyle"
+
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
