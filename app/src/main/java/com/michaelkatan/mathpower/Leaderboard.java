@@ -2,9 +2,8 @@ package com.michaelkatan.mathpower;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,18 +12,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Leaderboard extends Activity {
-    LinearLayout lay;
+
+    ArrayAdapter arrayAdapter;
+    List<Player> list;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.leaderboard_screen);
 
-        lay = findViewById(R.id.lead_linear);
-
+        list = new ArrayList<>();
+        listView = findViewById(R.id.lead_listView);
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(arrayAdapter);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
@@ -39,15 +44,13 @@ public class Leaderboard extends Activity {
                 ArrayList<Player> ppl = new ArrayList<>();
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     ppl.add(userSnapshot.getValue(Player.class));
+                    arrayAdapter.addAll(userSnapshot.getValue(Player.class));
+
                 }
 
                 for (int i = 0; i < ppl.size(); i++) {
-                    TextView tempTV = new TextView(Leaderboard.this);
-                    tempTV.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                    tempTV.setTextSize(25);
-                    tempTV.setPadding(15, 15, 15, 15);
-                    tempTV.setText(ppl.get(i).toString());
-                    lay.addView(tempTV);
+                    //arrayAdapter.addAll(ppl);
+
                 }
 
 

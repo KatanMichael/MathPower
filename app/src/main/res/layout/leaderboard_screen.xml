@@ -11,22 +11,15 @@
         android:text="LeaderBoard"
         android:textSize="35sp" />
 
-    <ScrollView
-        android:id="@+id/lead_scroll"
+
+    <ListView
+        android:id="@+id/lead_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/lead_tv">
-
-        <LinearLayout
-            android:id="@+id/lead_linear"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:layout_height="match_parent">
 
 
-        </LinearLayout>
+    </ListView>
 
-    </ScrollView>
 
 
 </RelativeLayout>
