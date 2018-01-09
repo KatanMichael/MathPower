@@ -18,6 +18,9 @@ public class Player {
         this._id = randomID();
     }
 
+    public Player() {
+    }
+
     public String get_name() {
         return _name;
     }
@@ -63,5 +66,12 @@ public class Player {
         int temp;
         temp = (int) (Math.random() * 100000);
         return temp;
+    }
+
+    @Override
+    public String toString() {
+        String ret;
+        ret = ("Name: " + get_name() + ", Age:" + get_age() + ", Score: " + get_score());
+        return ret;
     }
 }
