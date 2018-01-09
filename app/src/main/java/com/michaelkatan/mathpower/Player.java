@@ -15,6 +15,7 @@ public class Player {
     public Player(String _name, int _age) {
         this._name = _name;
         this._age = _age;
+        this._id = randomID();
     }
 
     public String get_name() {
@@ -58,4 +59,9 @@ public class Player {
     }
 
 
+    private int randomID() {
+        int temp;
+        temp = (int) (Math.random() * 100000);
+        return temp;
+    }
 }

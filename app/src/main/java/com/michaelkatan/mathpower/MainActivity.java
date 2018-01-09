@@ -4,10 +4,19 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static android.content.ContentValues.TAG;
 
 public class MainActivity extends Activity
 {
@@ -21,6 +30,9 @@ public class MainActivity extends Activity
     Button leader_btn;
     Button practice_btn;
 
+    DatabaseReference myRef;
+    FirebaseDatabase dataBase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -32,6 +44,8 @@ public class MainActivity extends Activity
         leader_btn = findViewById(R.id.leaderboard_btn);
         practice_btn = findViewById(R.id.practice_btn);
         welcome_tv = findViewById(R.id.mainText);
+
+        dataBase = FirebaseDatabase.getInstance();
 
 
         int age = getIntent().getIntExtra("age", 0);
@@ -45,6 +59,26 @@ public class MainActivity extends Activity
         changeStatusBarColor(R.color.colorPrimaryDark);
 
 
+        myRef.setValue("Hello " + player.get_name() + " " + player.get_age());
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+
     }
 
     public void changeStatusBarColor(int color)
@@ -56,4 +90,7 @@ public class MainActivity extends Activity
         }
 
     }
+
+    // Read from the database
+
 }

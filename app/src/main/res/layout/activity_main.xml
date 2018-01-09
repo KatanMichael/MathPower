@@ -3,25 +3,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wood"
+    android:background="@color/backgroundColor"
 
     >
 
 
     <TextView
         android:id="@+id/mainText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textColor="#e4e4e4"
         android:layout_marginTop="40dp"
         android:background="@drawable/main_text_frame"
         android:elevation="6dp"
         android:padding="10dp"
         android:text="@string/welcomeText"
         android:textSize="35sp"
-        android:textAlignment="center"
-        android:textStyle="italic"
         />
 
     <Button
@@ -33,7 +30,6 @@
         android:layout_marginTop="60dp"
         android:text="@string/playText"
         android:textSize="25sp"
-        android:textStyle="bold|italic"
         />
     <Button
         android:id="@+id/settings_btn"
@@ -43,7 +39,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/settings"
-        android:textStyle="bold|italic"
         />
 
     <Button
@@ -54,7 +49,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/leaderboard"
-        android:textStyle="bold|italic"
         />
 
     <Button
@@ -66,7 +60,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/practiceeMode"
-        android:textStyle="bold|italic"
         />
 
 
