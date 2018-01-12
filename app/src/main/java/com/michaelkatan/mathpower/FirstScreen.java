@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -75,7 +76,9 @@ public class FirstScreen extends Activity {
                                 startActivity(intent);
 
                             } else {
-
+                                Log.w("Signup", "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(FirstScreen.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -83,6 +86,44 @@ public class FirstScreen extends Activity {
                     });
 
 
+                }
+
+
+            }
+        });
+
+
+        first_signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email = first_email_et.getText().toString();
+                pass = first_pass_et.getText().toString();
+
+
+                if (!(email.equals("")) && !(pass.equals(""))) {
+                    myAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("Signin", "signInWithEmail:success");
+                                FirebaseUser user = myAuth.getCurrentUser();
+
+                                Intent intent = new Intent(FirstScreen.this, MainActivity.class);
+                                intent.putExtra("email", user.getEmail());
+                                intent.putExtra("ID", user.getUid());
+
+                                startActivity(intent);
+
+                            } else {
+                                Log.w("Signin", "signInWithEmail:failure", task.getException());
+                                Toast.makeText(FirstScreen.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+
+
+                        }
+                    });
                 }
 
 

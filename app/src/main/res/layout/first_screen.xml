@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        android:hint="Enter Your Name: " />
+        android:hint="Enter Your Email: "
+        android:inputType="textEmailAddress" />
 
 
     <EditText
@@ -22,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:hint="Enter Password"
-        android:inputType="number"
+        android:inputType="textPassword"
         android:textSize="15sp" />
 
     <Button
