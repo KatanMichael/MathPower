@@ -67,8 +67,8 @@ public class FirstScreen extends Activity {
                         public void onComplete(Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Log.d("Signup", "createUserWithEmail:success");
-                                FirebaseUser user = myAuth.getCurrentUser();
 
+                                FirebaseUser user = myAuth.getCurrentUser();
                                 Intent intent = new Intent(FirstScreen.this, MainActivity.class);
                                 intent.putExtra("email", user.getEmail());
                                 intent.putExtra("ID", user.getUid());
@@ -112,7 +112,9 @@ public class FirstScreen extends Activity {
                                 intent.putExtra("email", user.getEmail());
                                 intent.putExtra("ID", user.getUid());
 
+
                                 startActivity(intent);
+
 
                             } else {
                                 Log.w("Signin", "signInWithEmail:failure", task.getException());
