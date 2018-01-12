@@ -3,14 +3,22 @@ package com.michaelkatan.mathpower;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by MichaelKatan on 06/01/2018.
@@ -21,46 +29,110 @@ public class FirstScreen extends Activity {
     ActionBar bar;
     Window window;
 
-    EditText first_name_et;
-    EditText first_age_et;
-    Button first_enter;
+    EditText first_email_et;
+    EditText first_pass_et;
+    Button first_signUp;
+    Button first_signIn;
 
+    String email;
+    String pass;
+
+    private FirebaseAuth myAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_screen);
 
-        first_age_et = findViewById(R.id.first_age);
-        first_name_et = findViewById(R.id.first_et_name);
-        first_enter = findViewById(R.id.first_enter_btn);
+        first_pass_et = findViewById(R.id.first_pass);
+        first_email_et = findViewById(R.id.first_et_email);
+        first_signUp = findViewById(R.id.first_signup_btn);
+        first_signIn = findViewById(R.id.first_signin_btn);
 
-        first_enter.setOnClickListener(new View.OnClickListener() {
+        myAuth = FirebaseAuth.getInstance();
+        SharedPreferences sharedPreferences = getSharedPreferences("users", MODE_PRIVATE);
+
+        first_email_et.setText(sharedPreferences.getString("email", ""));
+
+
+        first_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = first_name_et.getText().toString();
-                if (!name.equals("")) {
-                    if (!(first_age_et.getText().toString().equals(""))) {
-                        int age = Integer.parseInt(first_age_et.getText().toString());
+                email = first_email_et.getText().toString();
+                pass = first_pass_et.getText().toString();
 
-                        Intent intent = new Intent(FirstScreen.this, MainActivity.class);
-                        intent.putExtra("age", age);
-                        intent.putExtra("name", name);
-                        startActivity(intent);
-                        finish();
+                if (!(email.equals("")) && !(pass.equals(""))) {
+                    myAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("Signup", "createUserWithEmail:success");
 
-                    } else {
-                        Toast.makeText(FirstScreen.this, "Enter Your Age Please", Toast.LENGTH_SHORT).show();
-                    }
+                                FirebaseUser user = myAuth.getCurrentUser();
+                                Intent intent = new Intent(FirstScreen.this, MainActivity.class);
+                                intent.putExtra("email", user.getEmail());
+                                intent.putExtra("ID", user.getUid());
 
-                } else {
-                    Toast.makeText(FirstScreen.this, "Enter Your Name Please", Toast.LENGTH_SHORT).show();
-                    //TODO Add to string.xml
+                                startActivity(intent);
+
+                            } else {
+                                Log.w("Signup", "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(FirstScreen.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        }
+                    });
+
+
                 }
 
 
             }
         });
+
+
+        first_signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email = first_email_et.getText().toString();
+                pass = first_pass_et.getText().toString();
+
+
+                if (!(email.equals("")) && !(pass.equals(""))) {
+                    myAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("Signin", "signInWithEmail:success");
+                                FirebaseUser user = myAuth.getCurrentUser();
+
+                                Intent intent = new Intent(FirstScreen.this, MainActivity.class);
+                                intent.putExtra("email", user.getEmail());
+                                intent.putExtra("ID", user.getUid());
+
+
+                                startActivity(intent);
+
+
+                            } else {
+                                Log.w("Signin", "signInWithEmail:failure", task.getException());
+                                Toast.makeText(FirstScreen.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+
+
+                        }
+                    });
+                }
+
+
+            }
+        });
+
+
 
 
         bar = getActionBar();
@@ -78,6 +150,18 @@ public class FirstScreen extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(getResources().getColor(color));
         }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("users", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("email", first_email_et.getText().toString());
+        editor.commit();
 
     }
 }

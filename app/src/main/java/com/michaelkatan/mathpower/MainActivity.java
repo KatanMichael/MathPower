@@ -5,26 +5,28 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import static android.content.ContentValues.TAG;
+import java.util.ArrayList;
 
 public class MainActivity extends Activity
 {
     ActionBar bar;
     Window window;
 
+    Player player = null;
 
     TextView welcome_tv;
     Button play_btn;
@@ -34,6 +36,9 @@ public class MainActivity extends Activity
 
     DatabaseReference myRef;
     FirebaseDatabase dataBase;
+    FirebaseAuth myAuth;
+    FirebaseUser user;
+    ChildEventListener childEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,40 +54,35 @@ public class MainActivity extends Activity
         welcome_tv = findViewById(R.id.mainText);
 
         dataBase = FirebaseDatabase.getInstance();
+        myAuth = FirebaseAuth.getInstance();
+
+        myRef = dataBase.getReference();
+        user = myAuth.getCurrentUser();
+
+        playerInDataBase();
+
+//        if(player == null)
+//        {
+//            player = new Player(user.getEmail(),user.getUid());
+//            myRef.child("users").child(""+user.getUid()).setValue(player);
+//        }
 
 
-        int age = getIntent().getIntExtra("age", 0);
-        String name = getIntent().getStringExtra("name");
+        play_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.set_score(player.get_score() + 1);
+                myRef.child("users").child("" + user.getUid()).setValue(player);
 
-        final Player player = new Player(name, age);
-        welcome_tv.setText("Hello And Welcome \n" + name);
+            }
+        });
+
+
         bar = getActionBar();
         bar.hide();
         window = this.getWindow();
         changeStatusBarColor(R.color.colorPrimaryDark);
 
-        myRef = dataBase.getReference(player.get_id() + "");
-
-        myRef.setValue(player);
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                //String value = dataSnapshot.getValue(String.class);
-                //Log.d(TAG, "Value is: " + value);
-                DatabaseReference tempRef = dataBase.getReference(myRef.getKey());
-                tempRef.setValue(player);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
 
         leader_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +105,75 @@ public class MainActivity extends Activity
 
     }
 
-    // Read from the database
 
+    public void playerInDataBase() {
+        childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                ArrayList<Player> users;
+                users = new ArrayList<>();
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+                if (dataSnapshot != null) {
+                    for (DataSnapshot child : children) {
+                        users.add(child.getValue(Player.class));
+                    }
+                } else {
+                    player = new Player(user.getEmail(), user.getUid());
+                    myRef.child("users").child("" + user.getUid()).setValue(player);
+                }
+
+                for (int i = 0; i < users.size(); i++) {
+                    if (users.get(i).get_id().equals(user.getUid())) {
+                        player = users.get(i);
+                        i = users.size() + 1;
+                    }
+                }
+
+                if (player == null) {
+                    player = new Player(user.getEmail(), user.getUid());
+                    myRef.child("users").child("" + user.getUid()).setValue(player);
+
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        myRef.addChildEventListener(childEventListener);
+
+    }
+
+    protected void onStop() {
+        super.onStop();
+
+        myRef.child("users").child("" + user.getUid()).setValue(player);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        myAuth.signOut();
+    }
 }

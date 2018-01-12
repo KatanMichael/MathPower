@@ -40,7 +40,7 @@ public class Leaderboard extends Activity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Player p = new Player("", 0);
+                Player p = new Player();
                 ArrayList<Player> ppl = new ArrayList<>();
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     ppl.add(userSnapshot.getValue(Player.class));

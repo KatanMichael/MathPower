@@ -5,20 +5,38 @@ package com.michaelkatan.mathpower;
  */
 
 public class Player {
-    private String _name;
-    private int _id;
+    private String _name = "";
+    private String _id = "";
     private int _age;
+
+    private String _email = "";
 
     private int _score;
     private int _lives;
 
-    public Player(String _name, int _age) {
-        this._name = _name;
-        this._age = _age;
-        this._id = randomID();
+    public Player(String _email, String id) {
+        this._email = _email;
+        this._id = id;
+
     }
 
     public Player() {
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String get_email() {
+        return _email;
+    }
+
+    public void set_email(String _email) {
+        this._email = _email;
     }
 
     public String get_name() {
@@ -27,14 +45,6 @@ public class Player {
 
     public void set_name(String _name) {
         this._name = _name;
-    }
-
-    public int get_id() {
-        return _id;
-    }
-
-    public void set_id(int _id) {
-        this._id = _id;
     }
 
     public int get_age() {
@@ -61,12 +71,6 @@ public class Player {
         this._lives = _lives;
     }
 
-
-    private int randomID() {
-        int temp;
-        temp = (int) (Math.random() * 100000);
-        return temp;
-    }
 
     @Override
     public String toString() {
