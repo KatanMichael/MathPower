@@ -54,7 +54,7 @@ public class MainActivity extends Activity
         int age = getIntent().getIntExtra("age", 0);
         String name = getIntent().getStringExtra("name");
 
-        final Player player = new Player(name, age);
+        final Player player = new Player();
         welcome_tv.setText("Hello And Welcome \n" + name);
         bar = getActionBar();
         bar.hide();

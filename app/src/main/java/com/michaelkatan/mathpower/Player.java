@@ -5,16 +5,19 @@ package com.michaelkatan.mathpower;
  */
 
 public class Player {
-    private String _name;
-    private int _id;
-    private int _age;
+    private String _name = "";
+    private int _id = 0;
+    private int _age = 0;
 
-    private int _score;
-    private int _lives;
+    private String _email = "";
 
-    public Player(String _name, int _age) {
+    private int _score = 0;
+    private int _lives = 0;
+
+    public Player(String _email, String _name, int _age) {
         this._name = _name;
         this._age = _age;
+        this._email = _email;
         this._id = randomID();
     }
 
