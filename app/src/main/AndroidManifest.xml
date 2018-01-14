@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Leaderboard"></activity>
+        <activity android:name=".AmericanQuiz"></activity>
     </application>
 
 </manifest>

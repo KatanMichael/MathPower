@@ -71,8 +71,11 @@ public class MainActivity extends Activity
         play_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player.set_score(player.get_score() + 1);
-                myRef.child("users").child("" + user.getUid()).setValue(player);
+//                player.set_score(player.get_score() + 1);
+//                myRef.child("users").child("" + user.getUid()).setValue(player);
+
+                Intent intent = new Intent(MainActivity.this, AmericanQuiz.class);
+                startActivityForResult(intent, 1);
 
             }
         });
@@ -175,5 +178,19 @@ public class MainActivity extends Activity
     public void onBackPressed() {
         super.onBackPressed();
         myAuth.signOut();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                int score = data.getExtras().getInt("score");
+                player.set_score(score);
+                myRef.child("users").child("" + user.getUid()).setValue(player);
+
+            }
+        }
+
+
     }
 }
