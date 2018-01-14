@@ -75,7 +75,9 @@ public class Player {
     @Override
     public String toString() {
         String ret;
-        ret = ("Name: " + get_name() + ", Age:" + get_age() + ", Score: " + get_score());
+        ret = ("Name: " + get_email() + ", Score: " + get_score());
         return ret;
     }
+
+
 }
