@@ -2,9 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/backgroundColor"
+
+    >
 
     <TextView
+        android:layout_marginTop="60dp"
         android:id="@+id/quastion_TV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,41 +26,46 @@
         android:layout_marginTop="12dp"
 
         android:padding="5dp"
-        android:text="___"
+        android:text="_____________________"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/submit_btn"
-        android:layout_width="wrap_content"
+        android:background="@drawable/main_text_frame"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/asnwer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
         android:text="Submit" />
 
     <Button
         android:id="@+id/btn_A"
+        style="@style/mainButtonStyle"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_above="@+id/btn_D"
-        android:layout_toStartOf="@+id/submit_btn"
-        android:text="1" />
+        android:layout_below="@id/submit_btn"
+        android:layout_marginStart="50dp"
+                android:text="1" />
 
 
     <Button
         android:id="@+id/btn_B"
+        style="@style/mainButtonStyle"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/submit_btn"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
+
         android:text="2"
 
         />
 
     <Button
         android:id="@+id/btn_C"
+        style="@style/mainButtonStyle"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignStart="@+id/btn_A"
@@ -68,13 +76,13 @@
 
     <Button
         android:id="@+id/btn_D"
+        style="@style/mainButtonStyle"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/btn_B"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="60dp"
-        android:layout_toStartOf="@id/submit_btn"
         android:text="4" />
 
 
@@ -82,7 +90,7 @@
         android:id="@+id/score_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+
         android:text="Score: "
         android:textSize="20sp" />
 
