@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -185,8 +186,12 @@ public class MainActivity extends Activity
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 int score = data.getExtras().getInt("score");
-                player.set_score(score);
-                myRef.child("users").child("" + user.getUid()).setValue(player);
+
+                if (score > player.get_score()) {
+                    Toast.makeText(this, "Your Broke Your Last Record by " + (score - player.get_score()) + " Points!", Toast.LENGTH_SHORT).show();
+                    player.set_score(score);
+                    myRef.child("users").child("" + user.getUid()).setValue(player);
+                }
 
             }
         }

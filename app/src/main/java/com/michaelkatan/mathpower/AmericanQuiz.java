@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +32,6 @@ public class AmericanQuiz extends Activity {
     Button btn_C;
     Button btn_D;
 
-    ImageView heart1;
-    ImageView heart2;
-    ImageView heart3;
     int count = 0;
 
 
@@ -44,7 +40,7 @@ public class AmericanQuiz extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.american_quiz);
 
 
         quastionTV = findViewById(R.id.quastion_TV);
@@ -169,6 +165,11 @@ public class AmericanQuiz extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finishGame();
+    }
+
     public class myClickListener implements View.OnClickListener {
         Button b;
 
@@ -182,6 +183,4 @@ public class AmericanQuiz extends Activity {
 
         }
     }
-
-
 }
