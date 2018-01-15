@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity
 {
+    static final int USERNAME_RQST = 2;
+
     ActionBar bar;
     Window window;
 
@@ -66,7 +68,6 @@ public class MainActivity extends Activity
 //        {
 //            player = new Player(user.getEmail(),user.getUid());
 //            myRef.child("users").child(""+user.getUid()).setValue(player);
-//        }
 
 
         play_btn.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +140,11 @@ public class MainActivity extends Activity
                     myRef.child("users").child("" + user.getUid()).setValue(player);
 
                 }
+                if ((player.get_name().equals(""))) {
+                    Intent intent = new Intent(MainActivity.this, Username_Input.class);
+                    startActivityForResult(intent, USERNAME_RQST);
+
+                }
 
             }
 
@@ -193,6 +199,15 @@ public class MainActivity extends Activity
                     myRef.child("users").child("" + user.getUid()).setValue(player);
                 }
 
+            }
+        }
+
+
+        if (requestCode == USERNAME_RQST) {
+            if (resultCode == RESULT_OK) {
+                String temp = data.getExtras().getString("username");
+                player.set_name(temp);
+                myRef.child("users").child("" + user.getUid()).setValue(player);
             }
         }
 

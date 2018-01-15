@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".Leaderboard"></activity>
         <activity android:name=".AmericanQuiz"></activity>
+        <activity android:name=".Username_Input"></activity>
     </application>
 
 </manifest>
