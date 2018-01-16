@@ -1,4 +1,4 @@
-package com.michaelkatan.mathpower;
+package com.michaelkatan.PowerMath;
 
 import android.app.ActionBar;
 import android.app.Activity;

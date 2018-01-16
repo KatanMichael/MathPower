@@ -1,4 +1,4 @@
-package com.michaelkatan.mathpower;
+package com.michaelkatan.PowerMath;
 
 import android.app.Activity;
 import android.content.Intent;

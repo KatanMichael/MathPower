@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.michaelkatan.mathpower">
+    package="com.michaelkatan.PowerMath">
 
     <application
         android:allowBackup="true"
@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".FirstScreen">
+        <activity android:name="com.michaelkatan.PowerMath.MainActivity"></activity>
+        <activity android:name="com.michaelkatan.PowerMath.FirstScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Leaderboard"></activity>
-        <activity android:name=".AmericanQuiz"></activity>
-        <activity android:name=".Username_Input"></activity>
+        <activity android:name="com.michaelkatan.PowerMath.Leaderboard"></activity>
+        <activity android:name="com.michaelkatan.PowerMath.AmericanQuiz"></activity>
+        <activity android:name="com.michaelkatan.PowerMath.Username_Input"></activity>
     </application>
 
 </manifest>
