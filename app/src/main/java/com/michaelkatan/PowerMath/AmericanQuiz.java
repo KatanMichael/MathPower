@@ -82,16 +82,11 @@ public class AmericanQuiz extends Activity {
                         rightAnswers++;
                     } else {
                         Toast.makeText(AmericanQuiz.this, "Wrong Answer...", Toast.LENGTH_SHORT).show();
-                        if (count == 3) {
-                            for (int i = 0; i < answerBtns.size(); i++) {
-                                answerBtns.get(i).setClickable(false);
-                            }
-                            quastionTV.setText("You Lose...");
-                            answerTV.setText("Sorry...");
-                            sumbit_btn.setClickable(false);
+                        Intent intent = new Intent();
+                        intent.putExtra("score", rightAnswers);
+                        setResult(RESULT_OK, intent);
+                        finish();
 
-                            finishGame();
-                        }
                     }
 
                     if (count != 3) {
@@ -109,7 +104,7 @@ public class AmericanQuiz extends Activity {
     private void finishGame() {
         Intent intent = new Intent();
         intent.putExtra("score", rightAnswers);
-        setResult(RESULT_OK, intent);
+        setResult(RESULT_CANCELED, intent);
         finish();
     }
 

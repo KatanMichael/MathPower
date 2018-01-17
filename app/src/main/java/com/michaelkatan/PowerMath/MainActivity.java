@@ -77,7 +77,7 @@ public class MainActivity extends Activity
 //                player.set_score(player.get_score() + 1);
 //                myRef.child("users").child("" + user.getUid()).setValue(player);
 
-                Intent intent = new Intent(MainActivity.this, AmericanQuiz.class);
+                Intent intent = new Intent(MainActivity.this, GameManager.class);
                 startActivityForResult(intent, AMERICAN_QUIZ);
 
             }

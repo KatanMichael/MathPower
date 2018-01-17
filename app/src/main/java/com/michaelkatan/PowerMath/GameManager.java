@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 
 public class GameManager extends Activity {
+    public static int NEWLEVEL = 1;
+    public int totalscore = 0;
 
     Player player;
     ArrayList<Class> levels;
@@ -27,13 +29,31 @@ public class GameManager extends Activity {
 
         player.set_lives(3);
 
+        startRandomLevel();
+
 
     }
 
 
     private void startRandomLevel() {
         Intent intent = new Intent(GameManager.this, levels.get(0));
-        startActivity(intent);
-        ;
+        startActivityForResult(intent, NEWLEVEL);
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == NEWLEVEL) {
+            if (resultCode == RESULT_OK) {
+                int backScore;
+                backScore = data.getExtras().getInt("score");
+                totalscore = totalscore + backScore;
+                player.set_lives(player.get_lives() - 1);
+
+
+            }
+        }
+
     }
 }
