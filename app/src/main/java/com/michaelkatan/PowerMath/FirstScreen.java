@@ -55,6 +55,9 @@ public class FirstScreen extends Activity {
         first_email_et.setText(sharedPreferences.getString("email", ""));
 
 
+        /*
+            Firebase Signup System,
+         */
         first_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +80,7 @@ public class FirstScreen extends Activity {
 
                             } else {
                                 Log.w("Signup", "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(FirstScreen.this, "Authentication failed.",
+                                Toast.makeText(FirstScreen.this, "" + task.getException(),
                                         Toast.LENGTH_SHORT).show();
                             }
 
@@ -93,6 +96,10 @@ public class FirstScreen extends Activity {
         });
 
 
+        /*
+            Firebase signing System.
+
+         */
         first_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +125,7 @@ public class FirstScreen extends Activity {
 
                             } else {
                                 Log.w("Signin", "signInWithEmail:failure", task.getException());
-                                Toast.makeText(FirstScreen.this, "Authentication failed.",
+                                Toast.makeText(FirstScreen.this, "" + task.getException(),
                                         Toast.LENGTH_SHORT).show();
 
                             }
@@ -135,6 +142,9 @@ public class FirstScreen extends Activity {
 
 
 
+        /*
+            Hide the actionBar And Change the status bar color
+         */
         bar = getActionBar();
         bar.hide();
         window = this.getWindow();
@@ -153,6 +163,10 @@ public class FirstScreen extends Activity {
 
     }
 
+
+    /*
+        Save the lase string that was enterd in the email edit text
+     */
     @Override
     protected void onStop() {
         super.onStop();
