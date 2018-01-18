@@ -1,7 +1,6 @@
 package com.michaelkatan.PowerMath;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +20,8 @@ public class AmericanQuiz extends Activity {
     char sign;
     int totalQuastions = 0;
     int rightAnswers = 0;
+
+    boolean right = false;
 
     TextView quastionTV;
     TextView answerTV;
@@ -60,6 +61,13 @@ public class AmericanQuiz extends Activity {
         answerBtns.add(btn_C);
         answerBtns.add(btn_D);
 
+
+        int temp;
+        temp = getIntent().getExtras().getInt("score");
+        rightAnswers = temp;
+        temp = getIntent().getExtras().getInt("total");
+        totalQuastions = temp;
+
         btn_A.setOnClickListener(new myClickListener());
         btn_B.setOnClickListener(new myClickListener());
         btn_C.setOnClickListener(new myClickListener());
@@ -68,25 +76,27 @@ public class AmericanQuiz extends Activity {
         scoreTv.setText("Score: " + rightAnswers + " / " + totalQuastions);
         getRandomQuastion();
         getRandomAnswers();
+
+        Toast.makeText(this, "" + answer, Toast.LENGTH_SHORT).show();
+
         sumbit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (answerTV.getText().toString().equals("?")) {
                     Toast.makeText(AmericanQuiz.this, "Select Answer First..", Toast.LENGTH_SHORT).show();
+
                 } else {
-                    totalQuastions++;
+
                     int temp;
                     temp = Integer.parseInt(answerTV.getText().toString());
                     if (temp == answer) {
                         Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
-                        rightAnswers++;
+                        right = true;
+                        finishGame();
                     } else {
-                        Toast.makeText(AmericanQuiz.this, "Wrong Answer...", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent();
-                        intent.putExtra("score", rightAnswers);
-                        setResult(RESULT_OK, intent);
-                        finish();
 
+                        right = false;
+                        finishGame();
                     }
 
                     if (count != 3) {
@@ -102,9 +112,13 @@ public class AmericanQuiz extends Activity {
 
 
     private void finishGame() {
-        Intent intent = new Intent();
-        intent.putExtra("score", rightAnswers);
-        setResult(RESULT_CANCELED, intent);
+
+        if (right) {
+            setResult(RESULT_OK);
+        } else {
+            setResult(RESULT_CANCELED);
+        }
+
         finish();
     }
 
@@ -162,7 +176,7 @@ public class AmericanQuiz extends Activity {
 
     @Override
     public void onBackPressed() {
-        finishGame();
+
     }
 
     public class myClickListener implements View.OnClickListener {
@@ -170,9 +184,7 @@ public class AmericanQuiz extends Activity {
 
         @Override
         public void onClick(View v) {
-
             b = (Button) v;
-            //Toast.makeText(MainActivity.this, ""+b.getText().toString(), Toast.LENGTH_SHORT).show();
             answerTV.setText(b.getText().toString());
 
 

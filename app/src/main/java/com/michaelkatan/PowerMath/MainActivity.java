@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity
 {
     static final int USERNAME_RQST = 2;
-    static final int AMERICAN_QUIZ = 1;
+    static final int GAMEMANAGER = 1;
 
     ActionBar bar;
     Window window;
@@ -78,7 +78,7 @@ public class MainActivity extends Activity
 //                myRef.child("users").child("" + user.getUid()).setValue(player);
 
                 Intent intent = new Intent(MainActivity.this, GameManager.class);
-                startActivityForResult(intent, AMERICAN_QUIZ);
+                startActivityForResult(intent, GAMEMANAGER);
 
             }
         });
