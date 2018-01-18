@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+
+    >
+
+    <TextView
+        android:id="@+id/sign_score_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Score: "
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/sign_signTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:text="<"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/sign_leftOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sign_signTV"
+        android:layout_alignBottom="@+id/sign_signTV"
+        android:layout_marginEnd="25dp"
+        android:layout_toStartOf="@+id/sign_signTV"
+        android:text="X + Y"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/sign_rightOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sign_signTV"
+        android:layout_alignBottom="@+id/sign_signTV"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/sign_signTV"
+        android:text="X + Y"
+        android:textSize="25sp" />
+
+
+</RelativeLayout>

@@ -20,6 +20,7 @@
         <activity android:name="com.michaelkatan.PowerMath.Leaderboard"></activity>
         <activity android:name="com.michaelkatan.PowerMath.AmericanQuiz"></activity>
         <activity android:name="com.michaelkatan.PowerMath.Username_Input"></activity>
+        <activity android:name=".GameManager"></activity>
     </application>
 
 </manifest>
