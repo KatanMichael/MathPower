@@ -61,6 +61,7 @@ public class FirstScreen extends Activity {
         first_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                first_signUp.setClickable(false);
                 email = first_email_et.getText().toString();
                 pass = first_pass_et.getText().toString();
 
@@ -103,6 +104,7 @@ public class FirstScreen extends Activity {
         first_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                first_signIn.setClickable(false);
                 email = first_email_et.getText().toString();
                 pass = first_pass_et.getText().toString();
 

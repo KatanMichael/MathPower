@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
-        android:text="<"
         android:textSize="25sp" />
 
     <TextView
@@ -44,6 +43,26 @@
         android:layout_toEndOf="@+id/sign_signTV"
         android:text="X + Y"
         android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/sign_true"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/sign_leftOp"
+        android:layout_marginTop="150dp"
+        android:layout_toStartOf="@+id/sign_signTV"
+        android:background="@drawable/button_frame"
+        android:text="True" />
+
+    <Button
+        android:id="@+id/sign_false"
+        android:layout_width="140dp"
+        android:layout_height="100sp"
+        android:layout_alignBottom="@+id/sign_true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/sign_signTV"
+        android:background="@drawable/button_frame"
+        android:text="False" />
 
 
 </RelativeLayout>

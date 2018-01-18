@@ -1,8 +1,12 @@
 package com.michaelkatan.PowerMath;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +18,10 @@ import java.util.ArrayList;
  */
 
 public class AmericanQuiz extends Activity {
+
+    ActionBar bar;
+    Window window;
+
     int num1;
     int num2;
     int answer;
@@ -77,7 +85,11 @@ public class AmericanQuiz extends Activity {
         getRandomQuastion();
         getRandomAnswers();
 
-        Toast.makeText(this, "" + answer, Toast.LENGTH_SHORT).show();
+        bar = getActionBar();
+        bar.hide();
+        window = this.getWindow();
+        changeStatusBarColor(R.color.colorPrimaryDark);
+
 
         sumbit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +191,15 @@ public class AmericanQuiz extends Activity {
 
     }
 
+    public void changeStatusBarColor(int color) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(getResources().getColor(color));
+        }
+
+    }
+
     public class myClickListener implements View.OnClickListener {
         Button b;
 
@@ -190,4 +211,5 @@ public class AmericanQuiz extends Activity {
 
         }
     }
+
 }
