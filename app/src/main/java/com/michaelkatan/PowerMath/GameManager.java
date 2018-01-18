@@ -27,7 +27,7 @@ public class GameManager extends Activity {
         levels = new ArrayList<>();
 
         levels.add(AmericanQuiz.class);
-
+        levels.add(TrueFalseSign.class);
 
         player.set_lives(3);
 
@@ -37,7 +37,10 @@ public class GameManager extends Activity {
 
 
     private void startRandomLevel() {
-        Intent intent = new Intent(GameManager.this, levels.get(0));
+        int temp;
+        temp = (int) ((Math.random() * 100) % levels.size());
+
+        Intent intent = new Intent(GameManager.this, levels.get(temp));
         intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
         startActivityForResult(intent, NEWLEVEL);

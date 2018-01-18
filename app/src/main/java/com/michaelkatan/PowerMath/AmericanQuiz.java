@@ -112,8 +112,6 @@ public class AmericanQuiz extends Activity {
                     }
 
                     if (count != 3) {
-                        getRandomQuastion();
-                        getRandomAnswers();
                         answerTV.setText("?");
                         scoreTv.setText(rightAnswers + " / " + totalQuastions);
                     }

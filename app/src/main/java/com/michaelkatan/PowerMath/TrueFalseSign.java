@@ -40,11 +40,12 @@ public class TrueFalseSign extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.true_or_false_sign);
 
-        //int temp;
-        // temp = getIntent().getExtras().getInt("score");
-        // totalScore = temp;
-        // temp = getIntent().getExtras().getInt("total");
-        // totalQuastions = temp;
+        int temp;
+        temp = getIntent().getExtras().getInt("score");
+        totalScore = temp;
+        temp = getIntent().getExtras().getInt("total");
+        totalQuastions = temp;
+
 
         sign_score_TV = findViewById(R.id.sign_score_TV);
         sign_leftOP_TV = findViewById(R.id.sign_leftOp);
@@ -54,6 +55,7 @@ public class TrueFalseSign extends Activity {
         sign_true_btn = findViewById(R.id.sign_true);
         sign_false_btn = findViewById(R.id.sign_false);
 
+        sign_score_TV.setText("Score: " + totalScore + " / " + totalQuastions);
 
         setUpQuestion();
         setUpQuestion();
@@ -75,14 +77,22 @@ public class TrueFalseSign extends Activity {
                 if ((diff < 0) && sign.equals("<")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
+                    setResult(RESULT_OK);
+                    finish();
+
                 }
                 if ((diff > 0) && sign.equals(">")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
+                    setResult(RESULT_OK);
+                    finish();
+
                 }
 
                 if (!choseRight) {
                     Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_CANCELED);
+                    finish();
 
                 }
 
@@ -100,14 +110,21 @@ public class TrueFalseSign extends Activity {
                 if ((diff < 0) && sign.equals(">")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
+                    setResult(RESULT_OK);
+                    finish();
                 }
                 if ((diff > 0) && sign.equals("<")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
+                    setResult(RESULT_OK);
+                    finish();
+
                 }
 
                 if (!choseRight) {
                     Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_CANCELED);
+                    finish();
 
                 }
             }
@@ -168,6 +185,11 @@ public class TrueFalseSign extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(getResources().getColor(color));
         }
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 }
