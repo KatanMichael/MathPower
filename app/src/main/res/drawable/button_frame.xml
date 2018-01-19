@@ -9,7 +9,10 @@
     <corners android:radius="10dp" />
 
 
-    <solid android:color="@color/colorPrimaryDark" />
+
+    <gradient android:startColor="@color/backgroundColor"
+        android:endColor="#6b93ff"/>
+
 
 
 </shape>

@@ -3,31 +3,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
+    android:background="@drawable/wg_blurred_backgrounds_11"
 
     >
 
 
-    <TextView
-        android:id="@+id/mainText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/main_text_frame"
-        android:elevation="6dp"
-        android:padding="10dp"
-        android:text="@string/welcomeText"
-        android:textSize="35sp"
-        />
 
     <Button
         android:id="@+id/play_btn"
         style="@style/mainButtonStyle"
         android:layout_height="wrap_content"
-        android:layout_below="@id/mainText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="110dp"
         android:text="@string/playText"
         android:textSize="25sp"
         />
