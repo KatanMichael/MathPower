@@ -94,6 +94,35 @@
         android:textSize="20sp" />
 
 
+    <ImageView
+        android:id="@+id/heart1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/hearticon"
+
+        />
+
+    <ImageView
+        android:id="@+id/heart2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_toLeftOf="@id/heart1"
+        android:src="@drawable/hearticon"
+
+        />
+
+    <ImageView
+        android:id="@+id/heart3"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_toLeftOf="@id/heart2"
+        android:src="@drawable/hearticon"
+
+
+        />
 
 
 

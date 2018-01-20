@@ -58,6 +58,9 @@ public class AmericanQuiz extends Activity {
 
         hearts=new ImageView[3];
 
+        hearts[0] = findViewById(R.id.heart1);
+        hearts[1] = findViewById(R.id.heart2);
+        hearts[2] = findViewById(R.id.heart3);
 
 
         quastionTV = findViewById(R.id.quastion_TV);

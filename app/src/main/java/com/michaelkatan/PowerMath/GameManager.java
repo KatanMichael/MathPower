@@ -43,6 +43,7 @@ public class GameManager extends Activity {
         Intent intent = new Intent(GameManager.this, levels.get(temp));
         intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
+        intent.putExtra("lives", player.get_lives());
 
         startActivityForResult(intent, NEWLEVEL);
 
