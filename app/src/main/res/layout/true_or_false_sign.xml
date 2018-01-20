@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wg_blurred_backgrounds_11"
+    android:background="@drawable/bluebackground"
 
     >
 
@@ -57,7 +57,7 @@
     <Button
         android:id="@+id/sign_false"
         android:layout_width="140dp"
-        android:layout_height="100sp"
+        android:layout_height="100dp"
         android:layout_alignBottom="@+id/sign_true"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/sign_signTV"
