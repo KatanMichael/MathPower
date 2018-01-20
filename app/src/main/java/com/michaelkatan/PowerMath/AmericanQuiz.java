@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,10 @@ public class AmericanQuiz extends Activity {
     TextView answerTV;
     TextView scoreTv;
 
+    ImageView[] hearts;
+    int counterHearts=0;
+
+
     Button sumbit_btn;
     Button btn_A;
     Button btn_B;
@@ -50,6 +55,12 @@ public class AmericanQuiz extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.american_quiz);
+
+        hearts=new ImageView[3];
+
+        hearts[0]=findViewById(R.id.heart1);
+        hearts[1]=findViewById(R.id.heart2);
+        hearts[2]=findViewById(R.id.heart3);
 
 
         quastionTV = findViewById(R.id.quastion_TV);
@@ -106,7 +117,8 @@ public class AmericanQuiz extends Activity {
                         right = true;
                         finishGame();
                     } else {
-
+                        hearts[counterHearts].setVisibility(View.INVISIBLE);
+                        counterHearts++;
                         right = false;
                         finishGame();
                     }
