@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,9 @@ public class TrueFalseSign extends Activity {
     TextView sign_mid_TV;
 
 
+    ImageView[] hearts;
+    int counterHearts = 0;
+
     Button sign_true_btn;
     Button sign_false_btn;
 
@@ -40,11 +44,6 @@ public class TrueFalseSign extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.true_or_false_sign);
 
-        int temp;
-        temp = getIntent().getExtras().getInt("score");
-        totalScore = temp;
-        temp = getIntent().getExtras().getInt("total");
-        totalQuastions = temp;
 
 
         sign_score_TV = findViewById(R.id.sign_score_TV);
@@ -55,11 +54,21 @@ public class TrueFalseSign extends Activity {
         sign_true_btn = findViewById(R.id.sign_true);
         sign_false_btn = findViewById(R.id.sign_false);
 
-        sign_score_TV.setText("Score: " + totalScore + " / " + totalQuastions);
 
+        hearts = new ImageView[3];
+        hearts[0] = findViewById(R.id.trueFalse_heart1);
+        hearts[1] = findViewById(R.id.trueFalse_heart2);
+        hearts[2] = findViewById(R.id.trueFalse_heart3);
+
+
+        updateVariables();
+        updateHearts();
+
+        sign_score_TV.setText("Score: " + totalScore + " / " + totalQuastions);
         setUpQuestion();
         setUpQuestion();
         setUpMidSign();
+
 
         bar = getActionBar();
         bar.hide();
@@ -129,6 +138,30 @@ public class TrueFalseSign extends Activity {
                 }
             }
         });
+
+    }
+
+    private void updateHearts() {
+        if (counterHearts == 2) {
+            hearts[2].setVisibility(View.GONE);
+        }
+
+        if (counterHearts == 1) {
+            hearts[2].setVisibility(View.GONE);
+            hearts[1].setVisibility(View.GONE);
+        }
+    }
+
+
+    private void updateVariables() {
+
+        int temp;
+        temp = getIntent().getExtras().getInt("score");
+        totalScore = temp;
+        temp = getIntent().getExtras().getInt("total");
+        totalQuastions = temp;
+        temp = getIntent().getExtras().getInt("lives");
+        counterHearts = temp;
 
     }
 

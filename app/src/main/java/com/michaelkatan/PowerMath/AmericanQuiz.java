@@ -37,7 +37,7 @@ public class AmericanQuiz extends Activity {
     TextView scoreTv;
 
     ImageView[] hearts;
-    int counterHearts=0;
+    int counterHearts = 0;
 
 
     Button sumbit_btn;
@@ -58,9 +58,9 @@ public class AmericanQuiz extends Activity {
 
         hearts=new ImageView[3];
 
-        hearts[0] = findViewById(R.id.heart1);
-        hearts[1] = findViewById(R.id.heart2);
-        hearts[2] = findViewById(R.id.heart3);
+        hearts[0] = findViewById(R.id.american_heart1);
+        hearts[1] = findViewById(R.id.american_heart2);
+        hearts[2] = findViewById(R.id.american_heart3);
 
 
         quastionTV = findViewById(R.id.quastion_TV);
@@ -81,20 +81,19 @@ public class AmericanQuiz extends Activity {
         answerBtns.add(btn_D);
 
 
-        int temp;
-        temp = getIntent().getExtras().getInt("score");
-        rightAnswers = temp;
-        temp = getIntent().getExtras().getInt("total");
-        totalQuastions = temp;
-
         btn_A.setOnClickListener(new myClickListener());
         btn_B.setOnClickListener(new myClickListener());
         btn_C.setOnClickListener(new myClickListener());
         btn_D.setOnClickListener(new myClickListener());
 
+        updateVariables();
+        updateHearts();
+
+
         scoreTv.setText("Score: " + rightAnswers + " / " + totalQuastions);
         getRandomQuastion();
         getRandomAnswers();
+
 
         bar = getActionBar();
         bar.hide();
@@ -117,8 +116,6 @@ public class AmericanQuiz extends Activity {
                         right = true;
                         finishGame();
                     } else {
-                        hearts[counterHearts].setVisibility(View.INVISIBLE);
-                        counterHearts++;
                         right = false;
                         finishGame();
                     }
@@ -130,6 +127,28 @@ public class AmericanQuiz extends Activity {
                 }
             }
         });
+    }
+
+    private void updateHearts() {
+        if (counterHearts == 2) {
+            hearts[2].setVisibility(View.GONE);
+        }
+
+        if (counterHearts == 1) {
+            hearts[2].setVisibility(View.GONE);
+            hearts[1].setVisibility(View.GONE);
+        }
+    }
+
+
+    private void updateVariables() {
+        int temp;
+        temp = getIntent().getExtras().getInt("score");
+        rightAnswers = temp;
+        temp = getIntent().getExtras().getInt("total");
+        totalQuastions = temp;
+        temp = getIntent().getExtras().getInt("lives");
+        counterHearts = temp;
     }
 
 
