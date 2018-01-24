@@ -88,6 +88,7 @@ public class TrueFalseSign extends Activity {
                     choseRight = true;
                     setResult(RESULT_OK);
                     finish();
+                    overridePendingTransition(0, 0);
 
                 }
                 if ((diff > 0) && sign.equals(">")) {
@@ -95,6 +96,7 @@ public class TrueFalseSign extends Activity {
                     choseRight = true;
                     setResult(RESULT_OK);
                     finish();
+                    overridePendingTransition(0, 0);
 
                 }
 
@@ -102,6 +104,7 @@ public class TrueFalseSign extends Activity {
                     Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
                     setResult(RESULT_CANCELED);
                     finish();
+                    overridePendingTransition(0, 0);
 
                 }
 
@@ -121,12 +124,14 @@ public class TrueFalseSign extends Activity {
                     choseRight = true;
                     setResult(RESULT_OK);
                     finish();
+                    overridePendingTransition(0, 0);
                 }
                 if ((diff > 0) && sign.equals("<")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
                     setResult(RESULT_OK);
                     finish();
+                    overridePendingTransition(0, 0);
 
                 }
 
@@ -134,6 +139,7 @@ public class TrueFalseSign extends Activity {
                     Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
                     setResult(RESULT_CANCELED);
                     finish();
+                    overridePendingTransition(0, 0);
 
                 }
             }
@@ -229,7 +235,7 @@ public class TrueFalseSign extends Activity {
 
     @Override
     protected void onStop() {
-        super.onStop();
         overridePendingTransition(0, 0);
+        super.onStop();
     }
 }

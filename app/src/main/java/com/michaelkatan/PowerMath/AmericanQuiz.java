@@ -161,6 +161,7 @@ public class AmericanQuiz extends Activity {
         }
 
         finish();
+        overridePendingTransition(0, 0);
     }
 
     private void getRandomQuastion() {
@@ -231,8 +232,8 @@ public class AmericanQuiz extends Activity {
 
     @Override
     protected void onStop() {
-        super.onStop();
         overridePendingTransition(0, 0);
+        super.onStop();
     }
 
     public class myClickListener implements View.OnClickListener {
