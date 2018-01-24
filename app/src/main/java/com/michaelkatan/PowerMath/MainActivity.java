@@ -78,6 +78,7 @@ public class MainActivity extends Activity
 //                myRef.child("users").child("" + user.getUid()).setValue(player);
 
                 Intent intent = new Intent(MainActivity.this, GameManager.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivityForResult(intent, GAMEMANAGER);
 
             }

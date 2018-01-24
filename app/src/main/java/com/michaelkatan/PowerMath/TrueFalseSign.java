@@ -225,4 +225,11 @@ public class TrueFalseSign extends Activity {
     public void onBackPressed() {
 
     }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //  overridePendingTransition(0,0);
+    }
 }

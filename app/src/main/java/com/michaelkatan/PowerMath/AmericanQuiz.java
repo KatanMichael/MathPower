@@ -104,7 +104,7 @@ public class AmericanQuiz extends Activity {
         sumbit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (answerTV.getText().toString().equals("?")) {
+                if (answerTV.getText().toString().equals("_____________________")) {
                     Toast.makeText(AmericanQuiz.this, "Select Answer First..", Toast.LENGTH_SHORT).show();
 
                 } else {
@@ -229,6 +229,12 @@ public class AmericanQuiz extends Activity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //   overridePendingTransition(0,0);
+    }
+
     public class myClickListener implements View.OnClickListener {
         Button b;
 
@@ -240,5 +246,4 @@ public class AmericanQuiz extends Activity {
 
         }
     }
-
 }

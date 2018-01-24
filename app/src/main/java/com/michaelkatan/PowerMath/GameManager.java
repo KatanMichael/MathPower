@@ -44,6 +44,7 @@ public class GameManager extends Activity {
         intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
         startActivityForResult(intent, NEWLEVEL);
 
