@@ -230,6 +230,6 @@ public class TrueFalseSign extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        //  overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
     }
 }
