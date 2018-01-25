@@ -147,20 +147,18 @@ public class AmericanQuiz extends Activity {
                         scoreTv.setText(rightAnswers + " / " + totalQuastions);
                     }
                 }
-                if (rightAnswersInRow%15==0 && rightAnswersInRow>1)
+                if(rightAnswersInRow>=5)
                 {
-                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                    starAnim.startAnimation(animation1);
-                }
-                else if (rightAnswersInRow%10==0 && rightAnswersInRow>1 )
-                {
-                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                    tenRowAnim.startAnimation(animation1);
-                }
-                else if (rightAnswersInRow%5==0 && rightAnswersInRow>1 )
-                {
-                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                    fiveRowAnim.startAnimation(animation1);
+                    if (rightAnswersInRow % 15 == 0 ) {
+                        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                        starAnim.startAnimation(animation1);
+                    } else if (rightAnswersInRow % 10 == 0) {
+                        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                        tenRowAnim.startAnimation(animation1);
+                    } else if (rightAnswersInRow % 5 == 0 ) {
+                        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                        fiveRowAnim.startAnimation(animation1);
+                    }
                 }
             }
         });
