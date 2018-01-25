@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ public class AmericanQuiz extends Activity {
     char sign;
     int totalQuastions = 0;
     int rightAnswers = 0;
+    int rightAnswersInRow=0;
 
     boolean right = false;
 
@@ -45,8 +48,12 @@ public class AmericanQuiz extends Activity {
     Button btn_B;
     Button btn_C;
     Button btn_D;
-
+    Button btn_test;
     int count = 0;
+
+    ImageView starAnim;
+    ImageView fiveRowAnim;
+    ImageView tenRowAnim;
 
 
     ArrayList<Button> answerBtns;
@@ -56,8 +63,21 @@ public class AmericanQuiz extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.american_quiz);
 
-        hearts=new ImageView[3];
+        btn_test=findViewById(R.id.test_button);
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rightAnswersInRow++;
+                rightAnswers++;
+                scoreTv.setText("Score: " + rightAnswers + " / " + totalQuastions);
+            }
+        });
 
+        starAnim=findViewById(R.id.star_anim);
+        fiveRowAnim=findViewById(R.id.five_row);
+        tenRowAnim=findViewById(R.id.ten_row);
+
+        hearts=new ImageView[3];
         hearts[0] = findViewById(R.id.american_heart1);
         hearts[1] = findViewById(R.id.american_heart2);
         hearts[2] = findViewById(R.id.american_heart3);
@@ -114,9 +134,11 @@ public class AmericanQuiz extends Activity {
                     if (temp == answer) {
                         Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
                         right = true;
+                        rightAnswersInRow++;
                         finishGame();
                     } else {
                         right = false;
+                        rightAnswersInRow=0;
                         finishGame();
                     }
 
@@ -124,6 +146,21 @@ public class AmericanQuiz extends Activity {
                         answerTV.setText("?");
                         scoreTv.setText(rightAnswers + " / " + totalQuastions);
                     }
+                }
+                if (rightAnswersInRow%15==0 && rightAnswersInRow>1)
+                {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    starAnim.startAnimation(animation1);
+                }
+                else if (rightAnswersInRow%10==0 && rightAnswersInRow>1 )
+                {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    tenRowAnim.startAnimation(animation1);
+                }
+                else if (rightAnswersInRow%5==0 && rightAnswersInRow>1 )
+                {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    fiveRowAnim.startAnimation(animation1);
                 }
             }
         });

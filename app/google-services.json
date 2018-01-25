@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "701139545861",
+    "firebase_url": "https://mathpower-73807.firebaseio.com",
+    "project_id": "mathpower-73807",
+    "storage_bucket": "mathpower-73807.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701139545861:android:cef41c4cd58c0439",
+        "android_client_info": {
+          "package_name": "com.michaelkatan.mathpower"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701139545861-1fkv0eigu6232acdtqudsbgdr4r3c9sd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.michaelkatan.mathpower",
+            "certificate_hash": "b09a22b5ba90a56ebe7e7eaa9eb61254058b6b2d"
+          }
+        },
+        {
+          "client_id": "701139545861-cofbv6s2p83jhs6vqohr29bjh40i4odo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADoewX5BglsaGa81NIlK8jCP9URIYxH1Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701139545861-cofbv6s2p83jhs6vqohr29bjh40i4odo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701139545861:android:892225165fa3f0fe",
+        "android_client_info": {
+          "package_name": "com.michaelkatan.PowerMath"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701139545861-f97osrfd7fuud1ln7n4dofdng26et2l9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.michaelkatan.PowerMath",
+            "certificate_hash": "087387814ac2916d660509ea2c61f60e0c5e7fdc"
+          }
+        },
+        {
+          "client_id": "701139545861-4j3va56m909lrsh8eu3197tkh093vq62.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.michaelkatan.PowerMath",
+            "certificate_hash": "b09a22b5ba90a56ebe7e7eaa9eb61254058b6b2d"
+          }
+        },
+        {
+          "client_id": "701139545861-cofbv6s2p83jhs6vqohr29bjh40i4odo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADoewX5BglsaGa81NIlK8jCP9URIYxH1Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701139545861-cofbv6s2p83jhs6vqohr29bjh40i4odo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

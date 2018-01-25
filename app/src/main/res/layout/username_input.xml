@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bluebackground" >
 
 
     <TextView
@@ -10,7 +11,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Enter Your Username"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        android:textStyle="italic|bold"/>
 
     <EditText
         android:id="@+id/username_et"
@@ -27,7 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/username_et"
         android:text="Submit"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:background="@drawable/main_text_frame"/>
 
 
 </RelativeLayout>
