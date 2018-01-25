@@ -149,21 +149,28 @@ public class AmericanQuiz extends Activity {
                 }
                 if(rightAnswersInRow>=5)
                 {
-                    if (rightAnswersInRow % 15 == 0 ) {
-                        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                        starAnim.startAnimation(animation1);
-                    } else if (rightAnswersInRow % 10 == 0) {
-                        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                        tenRowAnim.startAnimation(animation1);
-                    } else if (rightAnswersInRow % 5 == 0 ) {
-                        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                        fiveRowAnim.startAnimation(animation1);
-                    }
+                    animationManger();
                 }
             }
         });
+
     }
 
+
+    public void animationManger()
+    {
+        if (rightAnswersInRow % 15 == 0 ) {
+            Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+            starAnim.startAnimation(animation1);
+        } else if (rightAnswersInRow % 10 == 0) {
+            Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+            tenRowAnim.startAnimation(animation1);
+        } else if (rightAnswersInRow % 5 == 0 ) {
+            Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+            fiveRowAnim.startAnimation(animation1);
+        }
+
+    }
     private void updateHearts() {
         if (counterHearts == 2) {
             hearts[2].setVisibility(View.GONE);

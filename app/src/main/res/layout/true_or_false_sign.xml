@@ -6,6 +6,37 @@
 
     >
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/star"
+        android:id="@+id/star_anim"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:elevation="15dp"
+        android:visibility="invisible"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fiverow"
+        android:id="@+id/five_row"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:elevation="15dp"
+        android:visibility="invisible"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tenrow"
+        android:id="@+id/ten_row"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:elevation="15dp"
+        android:visibility="invisible"
+        />
+
     <TextView
         android:id="@+id/sign_score_TV"
         android:layout_width="wrap_content"

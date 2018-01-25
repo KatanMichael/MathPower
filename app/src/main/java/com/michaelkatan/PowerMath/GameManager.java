@@ -17,6 +17,7 @@ public class GameManager extends Activity {
     public int totalscore = 0;
     public int totalQuastions = 0;
 
+
     Player player;
     ArrayList<Class> levels;
     @Override
@@ -44,7 +45,9 @@ public class GameManager extends Activity {
         intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
+
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
 
         startActivityForResult(intent, NEWLEVEL);
 

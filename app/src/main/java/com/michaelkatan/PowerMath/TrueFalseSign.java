@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,14 +38,24 @@ public class TrueFalseSign extends Activity {
     ImageView[] hearts;
     int counterHearts = 0;
 
+    int rightAnswersInRow=0;
+
     Button sign_true_btn;
     Button sign_false_btn;
+
+    ImageView starAnim;
+    ImageView fiveRowAnim;
+    ImageView tenRowAnim;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.true_or_false_sign);
 
+
+        starAnim=findViewById(R.id.star_anim);
+        fiveRowAnim=findViewById(R.id.five_row);
+        tenRowAnim=findViewById(R.id.ten_row);
 
 
         sign_score_TV = findViewById(R.id.sign_score_TV);
@@ -90,6 +102,7 @@ public class TrueFalseSign extends Activity {
                     finish();
                     overridePendingTransition(0, 0);
 
+
                 }
                 if ((diff > 0) && sign.equals(">")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
@@ -125,6 +138,7 @@ public class TrueFalseSign extends Activity {
                     setResult(RESULT_OK);
                     finish();
                     overridePendingTransition(0, 0);
+
                 }
                 if ((diff > 0) && sign.equals("<")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
@@ -132,6 +146,7 @@ public class TrueFalseSign extends Activity {
                     setResult(RESULT_OK);
                     finish();
                     overridePendingTransition(0, 0);
+
 
                 }
 
@@ -145,6 +160,24 @@ public class TrueFalseSign extends Activity {
             }
         });
 
+    }
+
+
+    private void animationManager()
+    {
+        if(rightAnswersInRow>=5)
+        {
+            if (rightAnswersInRow % 15 == 0 ) {
+                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                starAnim.startAnimation(animation1);
+            } else if (rightAnswersInRow % 10 == 0) {
+                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                tenRowAnim.startAnimation(animation1);
+            } else if (rightAnswersInRow % 5 == 0 ) {
+                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                fiveRowAnim.startAnimation(animation1);
+            }
+        }
     }
 
     private void updateHearts() {
@@ -168,6 +201,8 @@ public class TrueFalseSign extends Activity {
         totalQuastions = temp;
         temp = getIntent().getExtras().getInt("lives");
         counterHearts = temp;
+        temp = getIntent().getExtras().getInt("rightAnswersInRow");
+        rightAnswersInRow = temp;
 
     }
 
