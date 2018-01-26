@@ -113,7 +113,7 @@ public class AmericanQuiz extends Activity {
         scoreTv.setText("Score: " + rightAnswers + " / " + totalQuastions);
         getRandomQuastion();
         getRandomAnswers();
-
+        animationManger();
 
         bar = getActionBar();
         bar.hide();
@@ -159,15 +159,17 @@ public class AmericanQuiz extends Activity {
 
     public void animationManger()
     {
-        if (rightAnswersInRow % 15 == 0 ) {
-            Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-            starAnim.startAnimation(animation1);
-        } else if (rightAnswersInRow % 10 == 0) {
-            Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-            tenRowAnim.startAnimation(animation1);
-        } else if (rightAnswersInRow % 5 == 0 ) {
-            Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-            fiveRowAnim.startAnimation(animation1);
+        if (rightAnswers >= 5) {
+            if (rightAnswers % 15 == 0) {
+                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                starAnim.startAnimation(animation1);
+            } else if (rightAnswers % 10 == 0) {
+                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                tenRowAnim.startAnimation(animation1);
+            } else if (rightAnswers % 5 == 0) {
+                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                fiveRowAnim.startAnimation(animation1);
+            }
         }
 
     }

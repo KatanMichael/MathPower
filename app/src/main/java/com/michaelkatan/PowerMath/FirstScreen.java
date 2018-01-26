@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,7 +37,7 @@ public class FirstScreen extends Activity {
 
     String email;
     String pass;
-
+    LottieAnimationView loadingAnim;
     private FirebaseAuth myAuth;
 
     @Override
@@ -48,6 +49,11 @@ public class FirstScreen extends Activity {
         first_email_et = findViewById(R.id.first_et_email);
         first_signUp = findViewById(R.id.first_signup_btn);
         first_signIn = findViewById(R.id.first_signin_btn);
+
+        loadingAnim = findViewById(R.id.first_loadingAnim_view);
+        loadingAnim.setAnimation("loading.json");
+        loadingAnim.loop(true);
+        loadingAnim.setVisibility(View.GONE);
 
         myAuth = FirebaseAuth.getInstance();
         SharedPreferences sharedPreferences = getSharedPreferences("users", MODE_PRIVATE);
@@ -61,6 +67,8 @@ public class FirstScreen extends Activity {
         first_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadingAnim.setVisibility(View.VISIBLE);
+                loadingAnim.playAnimation();
                 first_signUp.setClickable(false);
                 email = first_email_et.getText().toString();
                 pass = first_pass_et.getText().toString();
@@ -78,11 +86,15 @@ public class FirstScreen extends Activity {
                                 intent.putExtra("ID", user.getUid());
 
                                 startActivity(intent);
+                                loadingAnim.pauseAnimation();
+                                loadingAnim.setVisibility(View.GONE);
 
                             } else {
                                 Log.w("Signup", "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(FirstScreen.this, "" + task.getException(),
                                         Toast.LENGTH_SHORT).show();
+                                loadingAnim.pauseAnimation();
+                                loadingAnim.setVisibility(View.GONE);
                             }
 
 
@@ -104,6 +116,8 @@ public class FirstScreen extends Activity {
         first_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadingAnim.setVisibility(View.VISIBLE);
+                loadingAnim.playAnimation();
                 first_signIn.setClickable(false);
                 email = first_email_et.getText().toString();
                 pass = first_pass_et.getText().toString();
@@ -121,14 +135,18 @@ public class FirstScreen extends Activity {
                                 intent.putExtra("email", user.getEmail());
                                 intent.putExtra("ID", user.getUid());
 
-
                                 startActivity(intent);
+
+                                loadingAnim.pauseAnimation();
+                                loadingAnim.setVisibility(View.GONE);
 
 
                             } else {
                                 Log.w("Signin", "signInWithEmail:failure", task.getException());
                                 Toast.makeText(FirstScreen.this, "" + task.getException(),
                                         Toast.LENGTH_SHORT).show();
+                                loadingAnim.pauseAnimation();
+                                loadingAnim.setVisibility(View.GONE);
 
                             }
 
