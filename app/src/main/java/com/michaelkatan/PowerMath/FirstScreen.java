@@ -1,5 +1,6 @@
 package com.michaelkatan.PowerMath;
 
+import android.animation.Animator;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -37,7 +38,13 @@ public class FirstScreen extends Activity {
 
     String email;
     String pass;
+
     LottieAnimationView loadingAnim;
+    LottieAnimationView happyAnim;
+    LottieAnimationView chackedgAnim;
+
+    Boolean test = true;
+
     private FirebaseAuth myAuth;
 
     @Override
@@ -54,6 +61,17 @@ public class FirstScreen extends Activity {
         loadingAnim.setAnimation("loading.json");
         loadingAnim.loop(true);
         loadingAnim.setVisibility(View.GONE);
+        loadingAnim.useHardwareAcceleration();
+
+        chackedgAnim = findViewById(R.id.first_ChackAnim_view);
+        chackedgAnim.setVisibility(View.GONE);
+        loadingAnim.loop(false);
+
+
+        happyAnim = findViewById(R.id.first_happyAnim_view);
+        happyAnim.useExperimentalHardwareAcceleration(true);
+        //happyAnim.setBackgroundColor(View.INVISIBLE);
+
 
         myAuth = FirebaseAuth.getInstance();
         SharedPreferences sharedPreferences = getSharedPreferences("users", MODE_PRIVATE);
@@ -88,6 +106,7 @@ public class FirstScreen extends Activity {
                                 startActivity(intent);
                                 loadingAnim.pauseAnimation();
                                 loadingAnim.setVisibility(View.GONE);
+                                first_signUp.setClickable(true);
 
                             } else {
                                 Log.w("Signup", "createUserWithEmail:failure", task.getException());
@@ -95,6 +114,7 @@ public class FirstScreen extends Activity {
                                         Toast.LENGTH_SHORT).show();
                                 loadingAnim.pauseAnimation();
                                 loadingAnim.setVisibility(View.GONE);
+                                first_signUp.setClickable(true);
                             }
 
 
@@ -131,14 +151,35 @@ public class FirstScreen extends Activity {
                                 Log.d("Signin", "signInWithEmail:success");
                                 FirebaseUser user = myAuth.getCurrentUser();
 
-                                Intent intent = new Intent(FirstScreen.this, MainActivity.class);
+                                final Intent intent = new Intent(FirstScreen.this, MainActivity.class);
                                 intent.putExtra("email", user.getEmail());
                                 intent.putExtra("ID", user.getUid());
 
-                                startActivity(intent);
 
-                                loadingAnim.pauseAnimation();
-                                loadingAnim.setVisibility(View.GONE);
+                                chackedgAnim.addAnimatorListener(new Animator.AnimatorListener() {
+                                    @Override
+                                    public void onAnimationStart(Animator animation) {
+                                        chackedgAnim.setVisibility(View.VISIBLE);
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animator animation) {
+                                        startActivity(intent);
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationCancel(Animator animation) {
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animator animation) {
+
+                                    }
+                                });
+                                chackedgAnim.playAnimation();
+
 
 
                             } else {
@@ -147,7 +188,7 @@ public class FirstScreen extends Activity {
                                         Toast.LENGTH_SHORT).show();
                                 loadingAnim.pauseAnimation();
                                 loadingAnim.setVisibility(View.GONE);
-
+                                first_signIn.setClickable(true);
                             }
 
 
@@ -169,6 +210,38 @@ public class FirstScreen extends Activity {
         bar.hide();
         window = this.getWindow();
         changeStatusBarColor(R.color.colorPrimaryDark);
+
+
+        happyAnim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                happyAnim.playAnimation();
+            }
+        });
+        loadingAnim.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                Toast.makeText(FirstScreen.this, "START", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                Toast.makeText(FirstScreen.this, "END", Toast.LENGTH_SHORT).show();
+                loadingAnim.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                Toast.makeText(FirstScreen.this, "Repeat", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
     }
