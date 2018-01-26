@@ -155,11 +155,12 @@ public class FirstScreen extends Activity {
                                 intent.putExtra("email", user.getEmail());
                                 intent.putExtra("ID", user.getUid());
 
+                                loadingAnim.cancelAnimation();
 
                                 chackedgAnim.addAnimatorListener(new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
-                                        chackedgAnim.setVisibility(View.VISIBLE);
+
                                     }
 
                                     @Override
@@ -178,6 +179,8 @@ public class FirstScreen extends Activity {
 
                                     }
                                 });
+
+
                                 chackedgAnim.playAnimation();
 
 
@@ -229,11 +232,15 @@ public class FirstScreen extends Activity {
             public void onAnimationEnd(Animator animation) {
                 Toast.makeText(FirstScreen.this, "END", Toast.LENGTH_SHORT).show();
                 loadingAnim.setVisibility(View.GONE);
+                chackedgAnim.setVisibility(View.VISIBLE);
+
 
             }
 
             @Override
             public void onAnimationCancel(Animator animation) {
+                Toast.makeText(FirstScreen.this, "Cancel", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
