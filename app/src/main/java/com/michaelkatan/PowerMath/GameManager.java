@@ -16,6 +16,7 @@ public class GameManager extends Activity {
     public static int NEWLEVEL = 1;
     public int totalscore = 0;
     public int totalQuastions = 0;
+    public int timeLeft = 30000;
 
 
     Player player;
@@ -45,6 +46,7 @@ public class GameManager extends Activity {
         intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
+        intent.putExtra("time", timeLeft);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
@@ -58,11 +60,21 @@ public class GameManager extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == NEWLEVEL) {
             if (resultCode == RESULT_OK) {
+                int temp;
+                temp = getIntent().getExtras().getInt("timeLeft");
+                timeLeft = temp;
                 totalQuastions++;
                 totalscore++;
                 startRandomLevel();
 
             } else {
+                int temp;
+                temp = getIntent().getExtras().getInt("timeLeft");
+
+                if (temp == 0) {
+                    player.set_lives(1);
+                }
+
                 player.set_lives(player.get_lives() - 1);
                 Toast.makeText(this, "" + player.get_lives() + " More Lives Left", Toast.LENGTH_SHORT).show();
                 if (player.get_lives() == 0) {

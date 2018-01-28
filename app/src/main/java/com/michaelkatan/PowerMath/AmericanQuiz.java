@@ -2,8 +2,10 @@ package com.michaelkatan.PowerMath;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,12 +34,16 @@ public class AmericanQuiz extends Activity {
     int totalQuastions = 0;
     int rightAnswers = 0;
     int rightAnswersInRow=0;
+    int time = 0;
+    int timeLeft = 0;
+
 
     boolean right = false;
 
     TextView quastionTV;
     TextView answerTV;
     TextView scoreTv;
+    TextView timeTv;
 
     ImageView[] hearts;
     int counterHearts = 0;
@@ -57,6 +63,22 @@ public class AmericanQuiz extends Activity {
 
 
     ArrayList<Button> answerBtns;
+    CountDownTimer timer = new CountDownTimer(time, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            timeTv.setText("Time: " + millisUntilFinished + " Sec");
+            timeLeft = (int) millisUntilFinished;
+        }
+
+        @Override
+        public void onFinish() {
+            Intent intent = new Intent();
+            intent.putExtra("timeLeft", 0);
+            setResult(RESULT_CANCELED, intent);
+            finish();
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +105,7 @@ public class AmericanQuiz extends Activity {
         hearts[2] = findViewById(R.id.american_heart3);
 
 
+        timeTv = findViewById(R.id.american_timer);
         quastionTV = findViewById(R.id.quastion_TV);
         answerTV = findViewById(R.id.asnwer);
         scoreTv = findViewById(R.id.score_TV);
@@ -156,7 +179,6 @@ public class AmericanQuiz extends Activity {
 
     }
 
-
     public void animationManger()
     {
         if (rightAnswers >= 5) {
@@ -193,15 +215,18 @@ public class AmericanQuiz extends Activity {
         totalQuastions = temp;
         temp = getIntent().getExtras().getInt("lives");
         counterHearts = temp;
+        temp = getIntent().getExtras().getInt("time");
+        time = temp;
     }
 
 
     private void finishGame() {
-
+        Intent intent = new Intent();
+        intent.putExtra("timeLeft", timeLeft);
         if (right) {
-            setResult(RESULT_OK);
+            setResult(RESULT_OK, intent);
         } else {
-            setResult(RESULT_CANCELED);
+            setResult(RESULT_CANCELED, intent);
         }
 
         finish();

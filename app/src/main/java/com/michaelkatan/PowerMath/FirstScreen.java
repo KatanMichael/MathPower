@@ -69,8 +69,7 @@ public class FirstScreen extends Activity {
 
 
         happyAnim = findViewById(R.id.first_happyAnim_view);
-        happyAnim.useExperimentalHardwareAcceleration(true);
-        //happyAnim.setBackgroundColor(View.INVISIBLE);
+        happyAnim.useExperimentalHardwareAcceleration(false);
 
 
         myAuth = FirebaseAuth.getInstance();
@@ -160,23 +159,18 @@ public class FirstScreen extends Activity {
                                 chackedgAnim.addAnimatorListener(new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
-
                                     }
 
                                     @Override
                                     public void onAnimationEnd(Animator animation) {
                                         startActivity(intent);
-
                                     }
 
                                     @Override
                                     public void onAnimationCancel(Animator animation) {
-
                                     }
-
                                     @Override
                                     public void onAnimationRepeat(Animator animation) {
-
                                     }
                                 });
 

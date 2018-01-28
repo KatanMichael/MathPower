@@ -2,8 +2,10 @@ package com.michaelkatan.PowerMath;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,10 +27,12 @@ public class TrueFalseSign extends Activity {
 
     int totalScore;
     int totalQuastions;
-
     int leftSum = 0;
     int rightSum = 0;
+    int time = 0;
+    int timeLeft = 0;
 
+    TextView sign_timerTV;
     TextView sign_score_TV;
     TextView sign_leftOP_TV;
     TextView sign_rightOP_TV;
@@ -62,6 +66,7 @@ public class TrueFalseSign extends Activity {
         sign_leftOP_TV = findViewById(R.id.sign_leftOp);
         sign_rightOP_TV = findViewById(R.id.sign_rightOp);
         sign_mid_TV = findViewById(R.id.sign_signTV);
+        sign_timerTV = findViewById(R.id.sign_timer);
 
         sign_true_btn = findViewById(R.id.sign_true);
         sign_false_btn = findViewById(R.id.sign_false);
@@ -90,6 +95,9 @@ public class TrueFalseSign extends Activity {
         sign_false_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("timeLeft", timeLeft);
+
                 boolean choseRight = false;
                 String sign = sign_mid_TV.getText().toString();
                 int diff;
@@ -98,7 +106,7 @@ public class TrueFalseSign extends Activity {
                 if ((diff < 0) && sign.equals("<")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
-                    setResult(RESULT_OK);
+                    setResult(RESULT_OK, intent);
                     finish();
                     overridePendingTransition(0, 0);
 
@@ -107,7 +115,7 @@ public class TrueFalseSign extends Activity {
                 if ((diff > 0) && sign.equals(">")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
-                    setResult(RESULT_OK);
+                    setResult(RESULT_OK, intent);
                     finish();
                     overridePendingTransition(0, 0);
 
@@ -115,7 +123,7 @@ public class TrueFalseSign extends Activity {
 
                 if (!choseRight) {
                     Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
-                    setResult(RESULT_CANCELED);
+                    setResult(RESULT_CANCELED, intent);
                     finish();
                     overridePendingTransition(0, 0);
 
@@ -127,6 +135,9 @@ public class TrueFalseSign extends Activity {
         sign_true_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("timeLeft", timeLeft);
+
                 boolean choseRight = false;
                 String sign = sign_mid_TV.getText().toString();
                 int diff;
@@ -135,7 +146,7 @@ public class TrueFalseSign extends Activity {
                 if ((diff < 0) && sign.equals(">")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
-                    setResult(RESULT_OK);
+                    setResult(RESULT_OK, intent);
                     finish();
                     overridePendingTransition(0, 0);
 
@@ -143,7 +154,7 @@ public class TrueFalseSign extends Activity {
                 if ((diff > 0) && sign.equals("<")) {
                     Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
-                    setResult(RESULT_OK);
+                    setResult(RESULT_OK, intent);
                     finish();
                     overridePendingTransition(0, 0);
 
@@ -152,13 +163,30 @@ public class TrueFalseSign extends Activity {
 
                 if (!choseRight) {
                     Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
-                    setResult(RESULT_CANCELED);
+                    setResult(RESULT_CANCELED, intent);
                     finish();
                     overridePendingTransition(0, 0);
 
                 }
             }
         });
+
+        CountDownTimer timer = new CountDownTimer(time, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                sign_timerTV.setText("Time: " + millisUntilFinished + " Sec");
+                timeLeft = (int) millisUntilFinished;
+            }
+
+            @Override
+            public void onFinish() {
+                Intent intent = new Intent();
+                intent.putExtra("timeLeft", 0);
+                setResult(RESULT_CANCELED, intent);
+                finish();
+
+            }
+        };
 
     }
 
@@ -203,6 +231,8 @@ public class TrueFalseSign extends Activity {
         counterHearts = temp;
         temp = getIntent().getExtras().getInt("rightAnswersInRow");
         rightAnswersInRow = temp;
+        temp = getIntent().getExtras().getInt("time");
+        time = temp;
 
     }
 
