@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity
     Player player = null;
 
     TextView welcome_tv;
+    TextView fetching_TV;
+
     Button play_btn;
     Button setting_btn;
     Button leader_btn;
@@ -43,6 +46,10 @@ public class MainActivity extends Activity
     FirebaseAuth myAuth;
     FirebaseUser user;
     ChildEventListener childEventListener;
+
+    LottieAnimationView fetching_anim;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,10 +62,23 @@ public class MainActivity extends Activity
         setting_btn = findViewById(R.id.settings_btn);
         leader_btn = findViewById(R.id.leaderboard_btn);
         practice_btn = findViewById(R.id.practice_btn);
+
         welcome_tv = findViewById(R.id.mainText);
+        fetching_TV = findViewById(R.id.main_fetching_data_TV);
+
+        play_btn.setClickable(false);
+        setting_btn.setClickable(false);
+        leader_btn.setClickable(false);
+        practice_btn.setClickable(false);
 
         dataBase = FirebaseDatabase.getInstance();
         myAuth = FirebaseAuth.getInstance();
+
+        fetching_anim = findViewById(R.id.main_fetching_anim);
+        fetching_anim.setAnimation("material_loading_2.json");
+        fetching_anim.loop(true);
+        fetching_anim.setVisibility(View.VISIBLE);
+        fetching_anim.playAnimation();
 
         myRef = dataBase.getReference();
         user = myAuth.getCurrentUser();
@@ -115,6 +135,7 @@ public class MainActivity extends Activity
 
     public void playerInDataBase() {
         childEventListener = new ChildEventListener() {
+
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ArrayList<Player> users;
@@ -128,6 +149,8 @@ public class MainActivity extends Activity
                 } else {
                     player = new Player(user.getEmail(), user.getUid());
                     myRef.child("users").child("" + user.getUid()).setValue(player);
+                    restoreBtns();
+
                 }
 
                 for (int i = 0; i < users.size(); i++) {
@@ -140,35 +163,37 @@ public class MainActivity extends Activity
                 if (player == null) {
                     player = new Player(user.getEmail(), user.getUid());
                     myRef.child("users").child("" + user.getUid()).setValue(player);
+                    restoreBtns();
 
                 }
                 if ((player.get_name().equals(""))) {
                     Intent intent = new Intent(MainActivity.this, Username_Input.class);
+
                     startActivityForResult(intent, USERNAME_RQST);
 
+
                 }
+                restoreBtns();
+                fetching_anim.cancelAnimation();
+                fetching_anim.setVisibility(View.GONE);
+                fetching_TV.setVisibility(View.GONE);
 
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         };
 
@@ -214,5 +239,13 @@ public class MainActivity extends Activity
         }
 
 
+    }
+
+    public void restoreBtns() {
+
+        play_btn.setClickable(true);
+        setting_btn.setClickable(true);
+        leader_btn.setClickable(true);
+        practice_btn.setClickable(true);
     }
 }

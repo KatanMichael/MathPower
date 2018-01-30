@@ -82,17 +82,16 @@ public class GameManager extends Activity {
 
             } else {
                 temp = data.getLongExtra("time", 30000);
+                if (temp == 0) {
+                    player.set_lives(1);
+
+                }
                 temp = temp / 1000;
                 temp = temp * 1000;
                 timeLeft = temp;
 
-                if (temp == 0) {
-                    player.set_lives(1);
-                    ;
-                }
 
                 player.set_lives(player.get_lives() - 1);
-                // Toast.makeText(this, "" + player.get_lives() + " More Lives Left", Toast.LENGTH_SHORT).show();
                 if (player.get_lives() == 0) {
                     Toast.makeText(this, "You Lost", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
