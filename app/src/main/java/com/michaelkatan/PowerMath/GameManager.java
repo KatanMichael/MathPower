@@ -88,6 +88,7 @@ public class GameManager extends Activity {
 
                 if (temp == 0) {
                     player.set_lives(1);
+                    ;
                 }
 
                 player.set_lives(player.get_lives() - 1);
