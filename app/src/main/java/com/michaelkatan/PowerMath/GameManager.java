@@ -2,6 +2,7 @@ package com.michaelkatan.PowerMath;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -16,9 +17,8 @@ public class GameManager extends Activity {
     public static int NEWLEVEL = 1;
     public int totalscore = 0;
     public int totalQuastions = 0;
-    public int timeLeft = 30000;
-
-
+    public long timeLeft = 30;
+    SharedPreferences sharedPreferences;
     Player player;
     ArrayList<Class> levels;
     @Override
@@ -33,7 +33,18 @@ public class GameManager extends Activity {
 
         player.set_lives(3);
 
+
+        sharedPreferences = getSharedPreferences("timeLeft", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("time", timeLeft);
+        editor.commit();
+
+        updateTime();
         startRandomLevel();
+
+    }
+
+    private void updateTime() {
 
     }
 
@@ -41,13 +52,11 @@ public class GameManager extends Activity {
     private void startRandomLevel() {
         int temp;
         temp = (int) ((Math.random() * 100) % levels.size());
-
+        updateTime();
         Intent intent = new Intent(GameManager.this, levels.get(temp));
         intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
-        intent.putExtra("time", timeLeft);
-
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
@@ -60,16 +69,16 @@ public class GameManager extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == NEWLEVEL) {
             if (resultCode == RESULT_OK) {
-                int temp;
-                temp = getIntent().getExtras().getInt("timeLeft");
-                timeLeft = temp;
+                // int temp;
+                updateTime();
+                //timeLeft = temp;
                 totalQuastions++;
                 totalscore++;
                 startRandomLevel();
 
             } else {
-                int temp;
-                temp = getIntent().getExtras().getInt("timeLeft");
+                long temp;
+                temp = sharedPreferences.getLong("time", 30000);
 
                 if (temp == 0) {
                     player.set_lives(1);

@@ -218,29 +218,21 @@ public class FirstScreen extends Activity {
         loadingAnim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                Toast.makeText(FirstScreen.this, "START", Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                Toast.makeText(FirstScreen.this, "END", Toast.LENGTH_SHORT).show();
                 loadingAnim.setVisibility(View.GONE);
                 chackedgAnim.setVisibility(View.VISIBLE);
-
 
             }
 
             @Override
             public void onAnimationCancel(Animator animation) {
-                Toast.makeText(FirstScreen.this, "Cancel", Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-                Toast.makeText(FirstScreen.this, "Repeat", Toast.LENGTH_SHORT).show();
-
             }
         });
 

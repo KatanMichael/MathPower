@@ -3,6 +3,7 @@ package com.michaelkatan.PowerMath;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -29,8 +30,8 @@ public class TrueFalseSign extends Activity {
     int totalQuastions;
     int leftSum = 0;
     int rightSum = 0;
-    int time = 0;
-    int timeLeft = 0;
+    long time;
+    long timeLeft = 0;
 
     TextView sign_timerTV;
     TextView sign_score_TV;
@@ -51,6 +52,9 @@ public class TrueFalseSign extends Activity {
     ImageView fiveRowAnim;
     ImageView tenRowAnim;
 
+    MyTimer timer;
+
+    SharedPreferences sharedPreferences;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,10 +81,12 @@ public class TrueFalseSign extends Activity {
         hearts[1] = findViewById(R.id.trueFalse_heart2);
         hearts[2] = findViewById(R.id.trueFalse_heart3);
 
+        sharedPreferences = getSharedPreferences("timeLeft", MODE_PRIVATE);
 
         updateVariables();
         updateHearts();
 
+        Toast.makeText(this, "" + time, Toast.LENGTH_SHORT).show();
         sign_score_TV.setText("Score: " + totalScore + " / " + totalQuastions);
         setUpQuestion();
         setUpQuestion();
@@ -92,12 +98,16 @@ public class TrueFalseSign extends Activity {
         window = this.getWindow();
         changeStatusBarColor(R.color.colorPrimaryDark);
 
+        timer = new MyTimer(time, 1000);
+        timer.start();
+
         sign_false_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra("timeLeft", timeLeft);
 
+                timer.cancel();
                 boolean choseRight = false;
                 String sign = sign_mid_TV.getText().toString();
                 int diff;
@@ -138,6 +148,7 @@ public class TrueFalseSign extends Activity {
                 Intent intent = new Intent();
                 intent.putExtra("timeLeft", timeLeft);
 
+                timer.cancel();
                 boolean choseRight = false;
                 String sign = sign_mid_TV.getText().toString();
                 int diff;
@@ -170,23 +181,6 @@ public class TrueFalseSign extends Activity {
                 }
             }
         });
-
-        CountDownTimer timer = new CountDownTimer(time, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                sign_timerTV.setText("Time: " + millisUntilFinished + " Sec");
-                timeLeft = (int) millisUntilFinished;
-            }
-
-            @Override
-            public void onFinish() {
-                Intent intent = new Intent();
-                intent.putExtra("timeLeft", 0);
-                setResult(RESULT_CANCELED, intent);
-                finish();
-
-            }
-        };
 
     }
 
@@ -231,8 +225,11 @@ public class TrueFalseSign extends Activity {
         counterHearts = temp;
         temp = getIntent().getExtras().getInt("rightAnswersInRow");
         rightAnswersInRow = temp;
-        temp = getIntent().getExtras().getInt("time");
-        time = temp;
+        time = sharedPreferences.getLong("time", 30000);
+
+        if (time == 0) {
+            time = 30000;
+        }
 
     }
 
@@ -300,7 +297,38 @@ public class TrueFalseSign extends Activity {
 
     @Override
     protected void onStop() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("time", timeLeft);
+        editor.commit();
+
+        timer.cancel();
         overridePendingTransition(0, 0);
         super.onStop();
+    }
+
+    public class MyTimer extends CountDownTimer {
+
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+         *                          is called.
+         * @param countDownInterval The interval along the way to receive
+         *                          {@link #onTick(long)} callbacks.
+         */
+        public MyTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            sign_timerTV.setText("Time: " + millisUntilFinished + " Sec");
+            timeLeft = millisUntilFinished;
+        }
+
+        @Override
+        public void onFinish() {
+            Toast.makeText(TrueFalseSign.this, "Finish", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
