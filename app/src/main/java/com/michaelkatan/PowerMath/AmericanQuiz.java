@@ -2,8 +2,12 @@ package com.michaelkatan.PowerMath;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -33,11 +37,16 @@ public class AmericanQuiz extends Activity {
     int rightAnswers = 0;
     int rightAnswersInRow=0;
 
+    long time;
+    long timeLeft;
+
+
     boolean right = false;
 
     TextView quastionTV;
     TextView answerTV;
     TextView scoreTv;
+    TextView timeTv;
 
     ImageView[] hearts;
     int counterHearts = 0;
@@ -57,6 +66,10 @@ public class AmericanQuiz extends Activity {
 
 
     ArrayList<Button> answerBtns;
+
+    MyTimer timer;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +96,7 @@ public class AmericanQuiz extends Activity {
         hearts[2] = findViewById(R.id.american_heart3);
 
 
+        timeTv = findViewById(R.id.american_timer);
         quastionTV = findViewById(R.id.quastion_TV);
         answerTV = findViewById(R.id.asnwer);
         scoreTv = findViewById(R.id.score_TV);
@@ -106,9 +120,12 @@ public class AmericanQuiz extends Activity {
         btn_C.setOnClickListener(new myClickListener());
         btn_D.setOnClickListener(new myClickListener());
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         updateVariables();
         updateHearts();
-
+        timer = new MyTimer(time, 1000);
+        timer.start();
 
         scoreTv.setText("Score: " + rightAnswers + " / " + totalQuastions);
         getRandomQuastion();
@@ -119,7 +136,6 @@ public class AmericanQuiz extends Activity {
         bar.hide();
         window = this.getWindow();
         changeStatusBarColor(R.color.colorPrimaryDark);
-
 
         sumbit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +148,7 @@ public class AmericanQuiz extends Activity {
                     int temp;
                     temp = Integer.parseInt(answerTV.getText().toString());
                     if (temp == answer) {
-                        Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
                         right = true;
                         rightAnswersInRow++;
                         finishGame();
@@ -154,8 +170,8 @@ public class AmericanQuiz extends Activity {
             }
         });
 
-    }
 
+    }
 
     public void animationManger()
     {
@@ -187,23 +203,28 @@ public class AmericanQuiz extends Activity {
 
     private void updateVariables() {
         int temp;
+        long timeTemp;
         temp = getIntent().getExtras().getInt("score");
         rightAnswers = temp;
         temp = getIntent().getExtras().getInt("total");
         totalQuastions = temp;
         temp = getIntent().getExtras().getInt("lives");
         counterHearts = temp;
+        timeTemp = getIntent().getExtras().getLong("time");
+        time = timeTemp;
+
     }
 
 
     private void finishGame() {
-
+        Intent intent = new Intent();
+        intent.putExtra("time", timeLeft);
         if (right) {
-            setResult(RESULT_OK);
+            setResult(RESULT_OK, intent);
         } else {
-            setResult(RESULT_CANCELED);
+            setResult(RESULT_CANCELED, intent);
         }
-
+        timer.cancel();
         finish();
         overridePendingTransition(0, 0);
     }
@@ -276,6 +297,7 @@ public class AmericanQuiz extends Activity {
 
     @Override
     protected void onStop() {
+
         overridePendingTransition(0, 0);
         super.onStop();
     }
@@ -289,6 +311,38 @@ public class AmericanQuiz extends Activity {
             answerTV.setText(b.getText().toString());
 
 
+        }
+    }
+
+    public class MyTimer extends CountDownTimer {
+
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+         *                          is called.
+         * @param countDownInterval The interval along the way to receive
+         *                          {@link #onTick(long)} callbacks.
+         */
+        public MyTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            //TODO Add String Transtiolns To Timer in all activities
+            timeTv.setText("Time: " + millisUntilFinished / 1000 + " Sec");
+            timeLeft = millisUntilFinished;
+
+        }
+
+        @Override
+        public void onFinish() {
+            Toast.makeText(AmericanQuiz.this, "Finish", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent();
+            intent.putExtra("time", 0);
+            setResult(RESULT_CANCELED, intent);
+            finish();
         }
     }
 }
