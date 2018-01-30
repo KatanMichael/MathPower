@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -119,11 +120,10 @@ public class AmericanQuiz extends Activity {
         btn_C.setOnClickListener(new myClickListener());
         btn_D.setOnClickListener(new myClickListener());
 
-        sharedPreferences = getSharedPreferences("timeLeft", MODE_PRIVATE);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         updateVariables();
         updateHearts();
-        Toast.makeText(this, "" + time, Toast.LENGTH_SHORT).show();
         timer = new MyTimer(time, 1000);
         timer.start();
 
@@ -148,7 +148,7 @@ public class AmericanQuiz extends Activity {
                     int temp;
                     temp = Integer.parseInt(answerTV.getText().toString());
                     if (temp == answer) {
-                        Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
                         right = true;
                         rightAnswersInRow++;
                         finishGame();
@@ -203,23 +203,22 @@ public class AmericanQuiz extends Activity {
 
     private void updateVariables() {
         int temp;
+        long timeTemp;
         temp = getIntent().getExtras().getInt("score");
         rightAnswers = temp;
         temp = getIntent().getExtras().getInt("total");
         totalQuastions = temp;
         temp = getIntent().getExtras().getInt("lives");
         counterHearts = temp;
-        time = sharedPreferences.getLong("time", 30000);
+        timeTemp = getIntent().getExtras().getLong("time");
+        time = timeTemp;
 
-        if (time == 0) {
-            time = 30000;
-        }
     }
 
 
     private void finishGame() {
         Intent intent = new Intent();
-        intent.putExtra("timeLeft", timeLeft);
+        intent.putExtra("time", timeLeft);
         if (right) {
             setResult(RESULT_OK, intent);
         } else {
@@ -298,12 +297,7 @@ public class AmericanQuiz extends Activity {
 
     @Override
     protected void onStop() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong("time", timeLeft);
-        editor.commit();
 
-
-        timer.cancel();
         overridePendingTransition(0, 0);
         super.onStop();
     }
@@ -344,6 +338,11 @@ public class AmericanQuiz extends Activity {
         @Override
         public void onFinish() {
             Toast.makeText(AmericanQuiz.this, "Finish", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent();
+            intent.putExtra("time", 0);
+            setResult(RESULT_CANCELED, intent);
+            finish();
         }
     }
 }

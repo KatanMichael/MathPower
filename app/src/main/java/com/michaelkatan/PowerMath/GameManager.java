@@ -17,7 +17,9 @@ public class GameManager extends Activity {
     public static int NEWLEVEL = 1;
     public int totalscore = 0;
     public int totalQuastions = 0;
-    public long timeLeft = 30;
+    public long timeLeft;
+
+
     SharedPreferences sharedPreferences;
     Player player;
     ArrayList<Class> levels;
@@ -32,13 +34,8 @@ public class GameManager extends Activity {
         levels.add(TrueFalseSign.class);
 
         player.set_lives(3);
-
-
-        sharedPreferences = getSharedPreferences("timeLeft", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong("time", timeLeft);
-        editor.commit();
-
+        timeLeft = 30000;
+        Toast.makeText(this, "Im Here!", Toast.LENGTH_SHORT).show();
         updateTime();
         startRandomLevel();
 
@@ -57,6 +54,8 @@ public class GameManager extends Activity {
         intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
+        intent.putExtra("time", timeLeft);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
@@ -67,25 +66,32 @@ public class GameManager extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        long temp;
         if (requestCode == NEWLEVEL) {
             if (resultCode == RESULT_OK) {
-                // int temp;
-                updateTime();
-                //timeLeft = temp;
+
+                temp = data.getLongExtra("time", 30000);
+                temp = temp / 1000;
+                temp = temp * 1000;
+
+                timeLeft = temp;
                 totalQuastions++;
                 totalscore++;
+
                 startRandomLevel();
 
             } else {
-                long temp;
-                temp = sharedPreferences.getLong("time", 30000);
+                temp = data.getLongExtra("time", 30000);
+                temp = temp / 1000;
+                temp = temp * 1000;
+                timeLeft = temp;
 
                 if (temp == 0) {
                     player.set_lives(1);
                 }
 
                 player.set_lives(player.get_lives() - 1);
-                Toast.makeText(this, "" + player.get_lives() + " More Lives Left", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "" + player.get_lives() + " More Lives Left", Toast.LENGTH_SHORT).show();
                 if (player.get_lives() == 0) {
                     Toast.makeText(this, "You Lost", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
@@ -93,6 +99,7 @@ public class GameManager extends Activity {
                     setResult(RESULT_OK, intent);
                     finish();
                 } else {
+
                     totalQuastions++;
                     startRandomLevel();
                 }

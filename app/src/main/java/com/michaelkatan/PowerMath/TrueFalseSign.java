@@ -81,12 +81,10 @@ public class TrueFalseSign extends Activity {
         hearts[1] = findViewById(R.id.trueFalse_heart2);
         hearts[2] = findViewById(R.id.trueFalse_heart3);
 
-        sharedPreferences = getSharedPreferences("timeLeft", MODE_PRIVATE);
 
         updateVariables();
         updateHearts();
 
-        Toast.makeText(this, "" + time, Toast.LENGTH_SHORT).show();
         sign_score_TV.setText("Score: " + totalScore + " / " + totalQuastions);
         setUpQuestion();
         setUpQuestion();
@@ -105,7 +103,7 @@ public class TrueFalseSign extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("timeLeft", timeLeft);
+                intent.putExtra("time", timeLeft);
 
                 timer.cancel();
                 boolean choseRight = false;
@@ -114,7 +112,7 @@ public class TrueFalseSign extends Activity {
                 diff = leftSum - rightSum;
 
                 if ((diff < 0) && sign.equals("<")) {
-                    Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
                     setResult(RESULT_OK, intent);
                     finish();
@@ -123,7 +121,7 @@ public class TrueFalseSign extends Activity {
 
                 }
                 if ((diff > 0) && sign.equals(">")) {
-                    Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
                     setResult(RESULT_OK, intent);
                     finish();
@@ -132,7 +130,7 @@ public class TrueFalseSign extends Activity {
                 }
 
                 if (!choseRight) {
-                    Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
                     setResult(RESULT_CANCELED, intent);
                     finish();
                     overridePendingTransition(0, 0);
@@ -146,7 +144,7 @@ public class TrueFalseSign extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("timeLeft", timeLeft);
+                intent.putExtra("time", timeLeft);
 
                 timer.cancel();
                 boolean choseRight = false;
@@ -155,7 +153,7 @@ public class TrueFalseSign extends Activity {
                 diff = leftSum - rightSum;
 
                 if ((diff < 0) && sign.equals(">")) {
-                    Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
                     setResult(RESULT_OK, intent);
                     finish();
@@ -163,7 +161,7 @@ public class TrueFalseSign extends Activity {
 
                 }
                 if ((diff > 0) && sign.equals("<")) {
-                    Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
                     choseRight = true;
                     setResult(RESULT_OK, intent);
                     finish();
@@ -173,7 +171,7 @@ public class TrueFalseSign extends Activity {
                 }
 
                 if (!choseRight) {
-                    Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
                     setResult(RESULT_CANCELED, intent);
                     finish();
                     overridePendingTransition(0, 0);
@@ -217,6 +215,7 @@ public class TrueFalseSign extends Activity {
     private void updateVariables() {
 
         int temp;
+        long timeTemp;
         temp = getIntent().getExtras().getInt("score");
         totalScore = temp;
         temp = getIntent().getExtras().getInt("total");
@@ -225,11 +224,10 @@ public class TrueFalseSign extends Activity {
         counterHearts = temp;
         temp = getIntent().getExtras().getInt("rightAnswersInRow");
         rightAnswersInRow = temp;
-        time = sharedPreferences.getLong("time", 30000);
+        timeTemp = getIntent().getExtras().getLong("time");
 
-        if (time == 0) {
-            time = 30000;
-        }
+        time = timeTemp;
+
 
     }
 
@@ -297,11 +295,7 @@ public class TrueFalseSign extends Activity {
 
     @Override
     protected void onStop() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong("time", timeLeft);
-        editor.commit();
 
-        timer.cancel();
         overridePendingTransition(0, 0);
         super.onStop();
     }
@@ -321,14 +315,21 @@ public class TrueFalseSign extends Activity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            sign_timerTV.setText("Time: " + millisUntilFinished + " Sec");
+            sign_timerTV.setText("Time: " + millisUntilFinished / 1000 + " Sec");
             timeLeft = millisUntilFinished;
         }
 
         @Override
         public void onFinish() {
             Toast.makeText(TrueFalseSign.this, "Finish", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.putExtra("time", 0);
+            setResult(RESULT_CANCELED, intent);
+            finish();
+
 
         }
+
+
     }
 }
