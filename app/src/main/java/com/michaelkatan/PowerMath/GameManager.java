@@ -35,21 +35,17 @@ public class GameManager extends Activity {
 
         player.set_lives(3);
         timeLeft = 30000;
-        Toast.makeText(this, "Im Here!", Toast.LENGTH_SHORT).show();
-        updateTime();
+
         startRandomLevel();
 
     }
 
-    private void updateTime() {
-
-    }
 
 
     private void startRandomLevel() {
         int temp;
         temp = (int) ((Math.random() * 100) % levels.size());
-        updateTime();
+
         Intent intent = new Intent(GameManager.this, levels.get(temp));
         intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
@@ -85,11 +81,11 @@ public class GameManager extends Activity {
                 if (temp == 0) {
                     player.set_lives(1);
 
+                } else {
+                    temp = temp / 1000;
+                    temp = temp * 1000;
+                    timeLeft = temp;
                 }
-                temp = temp / 1000;
-                temp = temp * 1000;
-                timeLeft = temp;
-
 
                 player.set_lives(player.get_lives() - 1);
                 if (player.get_lives() == 0) {

@@ -1,5 +1,6 @@
 package com.michaelkatan.PowerMath;
 
+import android.animation.Animator;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -48,12 +49,12 @@ public class MainActivity extends Activity
     ChildEventListener childEventListener;
 
     LottieAnimationView fetching_anim;
+    LottieAnimationView gearsAnim;
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -80,23 +81,27 @@ public class MainActivity extends Activity
         fetching_anim.setVisibility(View.VISIBLE);
         fetching_anim.playAnimation();
 
+        gearsAnim = findViewById(R.id.main_gears_anim);
+        gearsAnim.setAnimation("blue_chack.json");
+        gearsAnim.setVisibility(View.GONE);
+
         myRef = dataBase.getReference();
         user = myAuth.getCurrentUser();
 
         playerInDataBase();
 
+        /*
+            Leave Unchacked only if the Database is empty!!
+         */
 //        if(player == null)
 //        {
 //            player = new Player(user.getEmail(),user.getUid());
 //            myRef.child("users").child(""+user.getUid()).setValue(player);
-
-
+//
+//         }
         play_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                player.set_score(player.get_score() + 1);
-//                myRef.child("users").child("" + user.getUid()).setValue(player);
-
                 Intent intent = new Intent(MainActivity.this, GameManager.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivityForResult(intent, GAMEMANAGER);
@@ -176,6 +181,28 @@ public class MainActivity extends Activity
                 restoreBtns();
                 fetching_anim.cancelAnimation();
                 fetching_anim.setVisibility(View.GONE);
+
+                gearsAnim.addAnimatorListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        gearsAnim.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+                    }
+                });
+
+                gearsAnim.setVisibility(View.VISIBLE);
+                gearsAnim.playAnimation();
                 fetching_TV.setVisibility(View.GONE);
 
             }

@@ -80,6 +80,14 @@
 
         />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/main_gears_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_fetching_data_TV"
+
+        />
+
 
 
 </RelativeLayout>
