@@ -103,6 +103,9 @@ public class FirstScreen extends Activity {
                                 intent.putExtra("ID", user.getUid());
 
                                 startActivity(intent);
+                                first_signIn.setClickable(true);
+                                first_signUp.setClickable(true);
+
                                 loadingAnim.pauseAnimation();
                                 loadingAnim.setVisibility(View.GONE);
                                 first_signUp.setClickable(true);
@@ -164,6 +167,9 @@ public class FirstScreen extends Activity {
                                     @Override
                                     public void onAnimationEnd(Animator animation) {
                                         startActivity(intent);
+                                        first_signIn.setClickable(true);
+                                        first_signUp.setClickable(true);
+                                        chackedgAnim.setVisibility(View.GONE);
                                     }
 
                                     @Override

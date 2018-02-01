@@ -57,7 +57,6 @@ public class AmericanQuiz extends Activity {
     Button btn_B;
     Button btn_C;
     Button btn_D;
-    Button btn_test;
     int count = 0;
 
     ImageView starAnim;
@@ -76,15 +75,6 @@ public class AmericanQuiz extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.american_quiz);
 
-        btn_test=findViewById(R.id.test_button);
-        btn_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rightAnswersInRow++;
-                rightAnswers++;
-                scoreTv.setText("Score: " + rightAnswers + " / " + totalQuastions);
-            }
-        });
 
         starAnim=findViewById(R.id.star_anim);
         fiveRowAnim=findViewById(R.id.five_row);
