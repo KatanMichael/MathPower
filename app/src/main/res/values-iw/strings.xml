@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MathPower</string>
+    <string name="sign_in">כניסה</string>
+    <string name="sign_up">הרשמה</string>
+    <string name="enterEmail">הכנס אימייל</string>
+    <string name="enterPassword">הכנס סיסמה</string>
+    <string name="fetching_data">מחפש פרטי משתמש</string>
+    <string name="welcomeText">ברוכים הבאים</string>
+    <string name="playText">שחק</string>
+    <string name="settings">הגדרות</string>
+    <string name="leaderboard">לוח תוצאות</string>
+    <string name="practiceeMode">אימון</string>
+    <string name="first_DOB">הכנס גיל</string>
+    <string name="recorde_broke">"שברת את השיא שלך ב "</string>
+    <string name="points">נקודות</string>
+    <string name="false_sign">שקר</string>
+    <string name="true_sign">אמת</string>
+    <string name="score">ניקוד</string>
+    <string name="time">זמן</string>
+    <string name="time_up">נגמר הזמן!</string>
+</resources>

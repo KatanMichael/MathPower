@@ -28,6 +28,8 @@ public class MainActivity extends Activity
 {
     static final int USERNAME_RQST = 2;
     static final int GAMEMANAGER = 1;
+    static final int GAMEMANAGER_PRACTISE = 2;
+
 
     ActionBar bar;
     Window window;
@@ -51,6 +53,7 @@ public class MainActivity extends Activity
     LottieAnimationView fetching_anim;
     LottieAnimationView gearsAnim;
 
+    boolean practise_mode = false;
 
 
     @Override
@@ -99,11 +102,15 @@ public class MainActivity extends Activity
 //            myRef.child("users").child(""+user.getUid()).setValue(player);
 //
 //         }
+
+
         play_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, GameManager.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("practice", 0);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                practise_mode = false;
                 startActivityForResult(intent, GAMEMANAGER);
 
             }
@@ -121,6 +128,19 @@ public class MainActivity extends Activity
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Leaderboard.class);
                 startActivity(intent);
+            }
+        });
+
+        practice_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GameManager.class);
+                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("practice", 1);
+                practise_mode = true;
+                startActivityForResult(intent, GAMEMANAGER);
+
+
             }
         });
 
@@ -243,14 +263,16 @@ public class MainActivity extends Activity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
+        if (requestCode == GAMEMANAGER) {
             if (resultCode == RESULT_OK) {
                 int score = data.getExtras().getInt("score");
 
                 if (score > player.get_score()) {
-                    Toast.makeText(this, "Your Broke Your Last Record by " + (score - player.get_score()) + " Points!", Toast.LENGTH_SHORT).show();
-                    player.set_score(score);
-                    myRef.child("users").child("" + user.getUid()).setValue(player);
+                    Toast.makeText(this, getResources().getText(R.string.recorde_broke) + " " + (score - player.get_score()) + " " + getResources().getText(R.string.points), Toast.LENGTH_SHORT).show();
+                    if (!practise_mode) {
+                        player.set_score(score);
+                        myRef.child("users").child("" + user.getUid()).setValue(player);
+                    }
                 }
 
             }

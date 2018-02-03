@@ -15,6 +15,9 @@
     <string name="leaderboard">Leaderboard</string>
     <string name="practiceeMode">Practice Mode</string>
     <string name="first_DOB">Enter Your Age:</string>
+    <string name="recorde_broke">Your Broke Your Last Record by </string>
+    <string name="points"> Points!</string>
+
 
     <string name="false_sign">False</string>
     <string name="true_sign">True</string>

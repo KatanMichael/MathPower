@@ -27,6 +27,10 @@ public class GameManager extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        int mode;
+        mode = getIntent().getExtras().getInt("practice", 0);
+
+
         player = new Player();
         levels = new ArrayList<>();
 
@@ -34,8 +38,11 @@ public class GameManager extends Activity {
         levels.add(TrueFalseSign.class);
 
         player.set_lives(3);
-        timeLeft = 30000;
-
+        if (mode == 0) {
+            timeLeft = 30000;
+        } else {
+            timeLeft = 9999999;
+        }
         startRandomLevel();
 
     }
