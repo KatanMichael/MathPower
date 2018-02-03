@@ -22,6 +22,7 @@ import android.widget.Toast;
  */
 
 public class TrueFalseSign extends Activity {
+
     ActionBar bar;
     Window window;
 
@@ -106,35 +107,30 @@ public class TrueFalseSign extends Activity {
                 intent.putExtra("time", timeLeft);
 
                 timer.cancel();
-                boolean choseRight = false;
                 String sign = sign_mid_TV.getText().toString();
-                int diff;
-                diff = leftSum - rightSum;
 
-                if ((diff < 0) && sign.equals("<")) {
-                    //Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
-                    choseRight = true;
-                    setResult(RESULT_OK, intent);
-                    finish();
-                    overridePendingTransition(0, 0);
-
-
-                }
-                if ((diff > 0) && sign.equals(">")) {
-                    //  Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
-                    choseRight = true;
-                    setResult(RESULT_OK, intent);
-                    finish();
-                    overridePendingTransition(0, 0);
-
+                if (sign.equals(">")) {
+                    if (leftSum < rightSum) {
+                        setResult(RESULT_OK, intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    } else {
+                        setResult(RESULT_CANCELED, intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
                 }
 
-                if (!choseRight) {
-                    // Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
-                    setResult(RESULT_CANCELED, intent);
-                    finish();
-                    overridePendingTransition(0, 0);
-
+                if (sign.equals("<")) {
+                    if (leftSum > rightSum) {
+                        setResult(RESULT_OK, intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    } else {
+                        setResult(RESULT_CANCELED, intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
                 }
 
             }
@@ -147,36 +143,33 @@ public class TrueFalseSign extends Activity {
                 intent.putExtra("time", timeLeft);
 
                 timer.cancel();
-                boolean choseRight = false;
                 String sign = sign_mid_TV.getText().toString();
-                int diff;
-                diff = leftSum - rightSum;
 
-                if ((diff < 0) && sign.equals(">")) {
-                    //Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
-                    choseRight = true;
-                    setResult(RESULT_OK, intent);
-                    finish();
-                    overridePendingTransition(0, 0);
-
-                }
-                if ((diff > 0) && sign.equals("<")) {
-                    // Toast.makeText(TrueFalseSign.this, "Right", Toast.LENGTH_SHORT).show();
-                    choseRight = true;
-                    setResult(RESULT_OK, intent);
-                    finish();
-                    overridePendingTransition(0, 0);
-
+                if (sign.equals(">")) {
+                    if (leftSum > rightSum) {
+                        setResult(RESULT_OK, intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    } else {
+                        setResult(RESULT_CANCELED, intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
 
                 }
 
-                if (!choseRight) {
-                    //Toast.makeText(TrueFalseSign.this, "Wrong", Toast.LENGTH_SHORT).show();
-                    setResult(RESULT_CANCELED, intent);
-                    finish();
-                    overridePendingTransition(0, 0);
-
+                if (sign.equals("<")) {
+                    if (leftSum < rightSum) {
+                        setResult(RESULT_OK, intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    } else {
+                        setResult(RESULT_CANCELED, intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
                 }
+
             }
         });
 
@@ -255,7 +248,7 @@ public class TrueFalseSign extends Activity {
                 leftSum = x - y;
                 sign_leftOP_TV.setText("" + x + " - " + y);
             } else {
-                leftSum = x - y;
+                leftSum = x + y;
                 sign_leftOP_TV.setText("" + x + " + " + y);
 
             }
@@ -266,10 +259,10 @@ public class TrueFalseSign extends Activity {
             temp = (int) ((Math.random() * 10) % 2);
 
             if (temp == 1) {
-                leftSum = x - y;
+                rightSum = x - y;
                 sign_rightOP_TV.setText("" + x + " - " + y);
             } else {
-                leftSum = x - y;
+                rightSum = x + y;
                 sign_rightOP_TV.setText("" + x + " + " + y);
 
             }
@@ -290,6 +283,7 @@ public class TrueFalseSign extends Activity {
     @Override
     public void onBackPressed() {
 
+
     }
 
 
@@ -302,13 +296,7 @@ public class TrueFalseSign extends Activity {
 
     public class MyTimer extends CountDownTimer {
 
-        /**
-         * @param millisInFuture    The number of millis in the future from the call
-         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
-         *                          is called.
-         * @param countDownInterval The interval along the way to receive
-         *                          {@link #onTick(long)} callbacks.
-         */
+
         public MyTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
