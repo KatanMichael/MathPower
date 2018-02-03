@@ -1,9 +1,26 @@
 <resources>
+
+
     <string name="app_name">MathPower</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enterEmail">Enter Your Email: </string>
+    <string name="enterPassword">Enter Password: </string>
+
+    <string name="fetching_data">Fetching User Data...</string>
     <string name="welcomeText">Welcome</string>
     <string name="playText">Play</string>
     <string name="settings">Settings</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="practiceeMode">Practice Mode</string>
     <string name="first_DOB">Enter Your Age:</string>
+
+    <string name="false_sign">False</string>
+    <string name="true_sign">True</string>
+    <string name="score">Score</string>
+    <string name="time">Time</string>
+    <string name="time_up">Times Up!</string>
+
+
 </resources>

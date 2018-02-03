@@ -25,12 +25,11 @@
         android:id="@+id/play_btn"
         style="@style/mainButtonStyle"
         android:layout_height="wrap_content"
-        android:layout_below="@id/mainText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_alignEnd="@+id/practice_btn"
+        android:layout_below="@+id/mainText"
+        android:layout_marginTop="48dp"
         android:text="@string/playText"
-        android:textSize="25sp"
-        />
+        android:textSize="25sp" />
     <Button
         android:id="@+id/settings_btn"
         style="@style/mainButtonStyle"
@@ -69,7 +68,7 @@
         android:layout_below="@id/practice_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="Fetching User Data..."
+        android:text="@string/fetching_data"
         android:textSize="20sp" />
 
     <com.airbnb.lottie.LottieAnimationView

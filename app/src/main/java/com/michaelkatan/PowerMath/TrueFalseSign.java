@@ -85,7 +85,7 @@ public class TrueFalseSign extends Activity {
         updateVariables();
         updateHearts();
 
-        sign_score_TV.setText("Score: " + totalScore + " / " + totalQuastions);
+        sign_score_TV.setText(getResources().getText(R.string.score).toString() + " " + totalScore + " / " + totalQuastions);
         setUpQuestion();
         setUpQuestion();
         setUpMidSign();
@@ -315,13 +315,13 @@ public class TrueFalseSign extends Activity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            sign_timerTV.setText("Time: " + millisUntilFinished / 1000 + " Sec");
+            sign_timerTV.setText(getResources().getText(R.string.time).toString() + " :" + millisUntilFinished / 1000 + " Sec");
             timeLeft = millisUntilFinished;
         }
 
         @Override
         public void onFinish() {
-            Toast.makeText(TrueFalseSign.this, "Finish", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TrueFalseSign.this, getResources().getText(R.string.time_up).toString(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("time", 0);
             setResult(RESULT_CANCELED, intent);

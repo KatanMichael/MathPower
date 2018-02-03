@@ -112,12 +112,14 @@ public class AmericanQuiz extends Activity {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        sumbit_btn.setVisibility(View.INVISIBLE);
         updateVariables();
         updateHearts();
         timer = new MyTimer(time, 1000);
         timer.start();
 
-        scoreTv.setText("Score: " + rightAnswers + " / " + totalQuastions);
+
+        scoreTv.setText(getResources().getText(R.string.score).toString() + " " + rightAnswers + " / " + totalQuastions);
         getRandomQuastion();
         getRandomAnswers();
         animationManger();
@@ -299,7 +301,7 @@ public class AmericanQuiz extends Activity {
         public void onClick(View v) {
             b = (Button) v;
             answerTV.setText(b.getText().toString());
-
+            sumbit_btn.performClick();
 
         }
     }
@@ -319,15 +321,14 @@ public class AmericanQuiz extends Activity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            //TODO Add String Transtiolns To Timer in all activities
-            timeTv.setText("Time: " + millisUntilFinished / 1000 + " Sec");
+            timeTv.setText(getResources().getText(R.string.time).toString() + " :" + millisUntilFinished / 1000 + " Sec");
             timeLeft = millisUntilFinished;
 
         }
 
         @Override
         public void onFinish() {
-            Toast.makeText(AmericanQuiz.this, "Finish", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AmericanQuiz.this, getResources().getText(R.string.time_up).toString(), Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent();
             intent.putExtra("time", 0);

@@ -91,7 +91,7 @@
         android:layout_marginTop="150dp"
         android:layout_toStartOf="@+id/sign_signTV"
         android:background="@drawable/button_frame"
-        android:text="True" />
+        android:text="@string/true_sign" />
 
     <Button
         android:id="@+id/sign_false"
@@ -101,7 +101,7 @@
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/sign_signTV"
         android:background="@drawable/button_frame"
-        android:text="False" />
+        android:text="@string/false_sign" />
 
     <ImageView
         android:id="@+id/trueFalse_heart1"
