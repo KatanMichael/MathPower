@@ -19,6 +19,7 @@ public class GameManager extends Activity {
     public int totalQuastions = 0;
     public long timeLeft;
 
+    public boolean streak = false;
 
     SharedPreferences sharedPreferences;
     Player player;
@@ -58,7 +59,7 @@ public class GameManager extends Activity {
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
         intent.putExtra("time", timeLeft);
-
+        intent.putExtra("onStreak", streak);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 
@@ -72,6 +73,7 @@ public class GameManager extends Activity {
         long temp;
         if (requestCode == NEWLEVEL) {
             if (resultCode == RESULT_OK) {
+                streak = true;
 
                 temp = data.getLongExtra("time", 30000);
                 temp = temp / 1000;
@@ -84,6 +86,7 @@ public class GameManager extends Activity {
                 startRandomLevel();
 
             } else {
+                streak = false;
                 temp = data.getLongExtra("time", 30000);
                 if (temp == 0) {
                     player.set_lives(1);

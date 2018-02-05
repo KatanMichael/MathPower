@@ -39,7 +39,7 @@ public class AmericanQuiz extends Activity {
 
     long time;
     long timeLeft;
-
+    boolean streak;
 
     boolean right = false;
 
@@ -167,19 +167,21 @@ public class AmericanQuiz extends Activity {
 
     public void animationManger()
     {
-        if (rightAnswers >= 5) {
-            if (rightAnswers % 15 == 0) {
-                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                starAnim.startAnimation(animation1);
-            } else if (rightAnswers % 10 == 0) {
-                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                tenRowAnim.startAnimation(animation1);
-            } else if (rightAnswers % 5 == 0) {
-                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                fiveRowAnim.startAnimation(animation1);
+        if (streak) {
+
+            if (rightAnswers >= 5) {
+                if (rightAnswers % 15 == 0) {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    starAnim.startAnimation(animation1);
+                } else if (rightAnswers % 10 == 0) {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    tenRowAnim.startAnimation(animation1);
+                } else if (rightAnswers % 5 == 0) {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    fiveRowAnim.startAnimation(animation1);
+                }
             }
         }
-
     }
     private void updateHearts() {
         if (counterHearts == 2) {
@@ -204,6 +206,7 @@ public class AmericanQuiz extends Activity {
         counterHearts = temp;
         timeTemp = getIntent().getExtras().getLong("time");
         time = timeTemp;
+        streak = getIntent().getExtras().getBoolean("onStreak", true);
 
     }
 

@@ -33,6 +33,7 @@ public class TrueFalseSign extends Activity {
     int rightSum = 0;
     long time;
     long timeLeft = 0;
+    boolean streak;
 
     TextView sign_timerTV;
     TextView sign_score_TV;
@@ -85,6 +86,8 @@ public class TrueFalseSign extends Activity {
 
         updateVariables();
         updateHearts();
+        animationManager();
+
 
         sign_score_TV.setText(getResources().getText(R.string.score).toString() + " " + totalScore + " / " + totalQuastions);
         setUpQuestion();
@@ -173,22 +176,26 @@ public class TrueFalseSign extends Activity {
             }
         });
 
+
     }
 
 
     private void animationManager()
     {
-        if(rightAnswersInRow>=5)
+        if (streak)
         {
-            if (rightAnswersInRow % 15 == 0 ) {
-                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                starAnim.startAnimation(animation1);
-            } else if (rightAnswersInRow % 10 == 0) {
-                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                tenRowAnim.startAnimation(animation1);
-            } else if (rightAnswersInRow % 5 == 0 ) {
-                Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
-                fiveRowAnim.startAnimation(animation1);
+
+            if (rightAnswersInRow >= 5) {
+                if (rightAnswersInRow % 15 == 0) {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    starAnim.startAnimation(animation1);
+                } else if (rightAnswersInRow % 10 == 0) {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    tenRowAnim.startAnimation(animation1);
+                } else if (rightAnswersInRow % 5 == 0) {
+                    Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
+                    fiveRowAnim.startAnimation(animation1);
+                }
             }
         }
     }
@@ -218,8 +225,8 @@ public class TrueFalseSign extends Activity {
         temp = getIntent().getExtras().getInt("rightAnswersInRow");
         rightAnswersInRow = temp;
         timeTemp = getIntent().getExtras().getLong("time");
-
         time = timeTemp;
+        streak = getIntent().getExtras().getBoolean("onStreak", true);
 
 
     }

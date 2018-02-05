@@ -26,9 +26,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity
 {
-    static final int USERNAME_RQST = 2;
-    static final int GAMEMANAGER = 1;
-    static final int GAMEMANAGER_PRACTISE = 2;
+    final int USERNAME_RQST = 2;
+    final int GAMEMANAGER = 1;
+    final int SETTINGS = 3;
 
 
     ActionBar bar;
@@ -94,7 +94,7 @@ public class MainActivity extends Activity
         playerInDataBase();
 
         /*
-            Leave Unchacked only if the Database is empty!!
+            Leave Unchecked only if the Database is empty!!
          */
 //        if(player == null)
 //        {
@@ -141,6 +141,15 @@ public class MainActivity extends Activity
                 startActivityForResult(intent, GAMEMANAGER);
 
 
+            }
+        });
+
+        setting_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingScreen.class);
+                intent.putExtra("username", player.get_name());
+                startActivityForResult(intent, SETTINGS);
             }
         });
 
@@ -284,6 +293,15 @@ public class MainActivity extends Activity
                 String temp = data.getExtras().getString("username");
                 player.set_name(temp);
                 myRef.child("users").child("" + user.getUid()).setValue(player);
+            }
+        }
+
+        if (requestCode == SETTINGS) {
+            if (resultCode == RESULT_OK) {
+                String temp;
+                temp = data.getExtras().getString("name");
+                player.set_name(temp);
+                myRef.child("users").child("" + user.getUid()).child("_name").setValue(temp);
             }
         }
 

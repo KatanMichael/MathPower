@@ -22,6 +22,7 @@
         <activity android:name="com.michaelkatan.PowerMath.Username_Input"></activity>
         <activity android:name=".GameManager"></activity>
         <activity android:name=".TrueFalseSign"></activity>
+        <activity android:name=".SettingScreen"></activity>
     </application>
 
 </manifest>

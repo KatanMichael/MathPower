@@ -25,5 +25,6 @@
     <string name="time">Time</string>
     <string name="time_up">Times Up!</string>
 
+    <string name="setting_name_btn">Change Nickname</string>
 
 </resources>
