@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class GameManager extends Activity {
     public static int NEWLEVEL = 1;
     public int totalscore = 0;
+    public int rightAnswars = 0;
     public int totalQuastions = 0;
     public long timeLeft;
 
@@ -55,7 +56,7 @@ public class GameManager extends Activity {
         temp = (int) ((Math.random() * 100) % levels.size());
 
         Intent intent = new Intent(GameManager.this, levels.get(temp));
-        intent.putExtra("score", totalscore);
+        intent.putExtra("score", rightAnswars);
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
         intent.putExtra("time", timeLeft);
@@ -81,7 +82,8 @@ public class GameManager extends Activity {
 
                 timeLeft = temp;
                 totalQuastions++;
-                totalscore++;
+                rightAnswars++;
+                totalscore = totalscore + (int) temp / 1000;
 
                 startRandomLevel();
 
