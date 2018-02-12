@@ -34,7 +34,9 @@ public class GameManager extends Activity {
         super.onCreate(savedInstanceState);
 
         ring= MediaPlayer.create(GameManager.this,R.raw.ameno);
+        ring.setVolume(0.5f,0.5f);
         ring.start();
+
 
         int mode;
         mode = getIntent().getExtras().getInt("practice", 0);

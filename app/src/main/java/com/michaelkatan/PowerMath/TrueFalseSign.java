@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -61,12 +62,16 @@ public class TrueFalseSign extends Activity {
     LottieAnimationView wronganswer_anim;
 
     MyTimer timer;
-
+    MediaPlayer correctSound;
     SharedPreferences sharedPreferences;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.true_or_false_sign);
+
+        correctSound= MediaPlayer.create(TrueFalseSign.this,R.raw.ameno);
+        correctSound.start();
+
 
         rightanswer_anim=findViewById(R.id.right_answer_anim);
         wronganswer_anim=findViewById(R.id.wrong_answer_anim);
