@@ -41,7 +41,7 @@ public class GameManager extends Activity {
         int mode;
         mode = getIntent().getExtras().getInt("practice", 0);
 
-
+//k
         player = new Player();
         levels = new ArrayList<>();
 
