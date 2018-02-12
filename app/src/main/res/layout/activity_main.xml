@@ -25,7 +25,8 @@
         android:id="@+id/play_btn"
         style="@style/mainButtonStyle"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/practice_btn"
+
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/mainText"
         android:layout_marginTop="48dp"
         android:text="@string/playText"
