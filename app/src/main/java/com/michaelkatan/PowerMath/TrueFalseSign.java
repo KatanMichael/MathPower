@@ -169,12 +169,9 @@ public class TrueFalseSign extends Activity {
     }
 
 
-
-
-
-
-
     public void rightAnswer() {
+        sign_false_btn.setClickable(false);
+        sign_true_btn.setClickable(false);
         rightanswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -208,6 +205,9 @@ public class TrueFalseSign extends Activity {
     }
 
     public void wrongAnswer() {
+        sign_false_btn.setClickable(false);
+        sign_true_btn.setClickable(false);
+
        wronganswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {

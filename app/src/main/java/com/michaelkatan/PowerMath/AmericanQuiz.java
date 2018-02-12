@@ -139,6 +139,7 @@ public class AmericanQuiz extends Activity {
         sumbit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                disableClicks();
                 if (answerTV.getText().toString().equals("_____________________")) {
                     Toast.makeText(AmericanQuiz.this, "Select Answer First..", Toast.LENGTH_SHORT).show();
 
@@ -361,6 +362,13 @@ public class AmericanQuiz extends Activity {
         super.onStop();
     }
 
+    public void disableClicks() {
+        for (int i = 0; i < answerBtns.size(); i++) {
+            answerBtns.get(i).setClickable(false);
+        }
+
+    }
+
     public class myClickListener implements View.OnClickListener {
         Button b;
 
@@ -371,6 +379,8 @@ public class AmericanQuiz extends Activity {
             sumbit_btn.performClick();
 
         }
+
+
     }
 
     public class MyTimer extends CountDownTimer {
