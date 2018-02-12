@@ -27,7 +27,6 @@ public class GameManager extends Activity {
     public boolean timeEnd = false;
 
     MediaPlayer ring;
-    MediaPlayer heartbeat;
     Player player;
     ArrayList<Class> levels;
     @Override
