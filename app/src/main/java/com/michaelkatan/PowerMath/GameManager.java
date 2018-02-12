@@ -27,7 +27,6 @@ public class GameManager extends Activity {
     public boolean timeEnd = false;
 
     MediaPlayer ring;
-    MediaPlayer heartbeat;
     Player player;
     ArrayList<Class> levels;
     @Override
@@ -36,6 +35,7 @@ public class GameManager extends Activity {
 
 
         ring= MediaPlayer.create(GameManager.this,R.raw.ameno);
+        ring.setVolume(0.3f,0.3f);
         ring.start();
 
 

@@ -67,7 +67,10 @@ public class TrueFalseSign extends Activity {
 
         correctSound= MediaPlayer.create(TrueFalseSign.this,R.raw.correctans);
         wrongSound= MediaPlayer.create(TrueFalseSign.this,R.raw.wrongans);
+        correctSound.setVolume(0.2f,0.2f);
+        wrongSound.setVolume(0.2f,0.2f);
 
+//kdww
 
         rightanswer_anim=findViewById(R.id.right_answer_anim);
         wronganswer_anim=findViewById(R.id.wrong_answer_anim);
