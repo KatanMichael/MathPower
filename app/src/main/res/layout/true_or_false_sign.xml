@@ -147,5 +147,19 @@
 
         />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="sad_one.json"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="360dp"
+        android:visibility="invisible"
+        android:id="@+id/wrong_answer_anim"
+
+
+
+        />
+
 
 </RelativeLayout>
