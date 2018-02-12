@@ -1,8 +1,11 @@
 package com.michaelkatan.PowerMath;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,6 +22,9 @@ import java.util.List;
 
 
 public class Leaderboard extends Activity {
+
+    ActionBar bar;
+    Window window;
 
     ArrayAdapter arrayAdapter;
     List<Player> list;
@@ -63,6 +69,19 @@ public class Leaderboard extends Activity {
 
         });
 
+        bar = getActionBar();
+        bar.hide();
+        window = this.getWindow();
+        changeStatusBarColor(R.color.colorPrimaryDark);
+
+    }
+
+    public void changeStatusBarColor(int color) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(getResources().getColor(color));
+        }
 
     }
 }
@@ -84,4 +103,5 @@ class PlayerComparator implements Comparator<Player> {
 
 
     }
+
 }
