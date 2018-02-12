@@ -299,6 +299,10 @@ public class TrueFalseSign extends Activity {
     @Override
     public void onBackPressed() {
 
+        Intent intent = new Intent();
+        intent.putExtra("back", true);
+        setResult(RESULT_CANCELED, intent);
+        finish();
 
     }
 

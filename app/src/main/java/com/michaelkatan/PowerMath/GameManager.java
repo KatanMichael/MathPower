@@ -2,7 +2,6 @@ package com.michaelkatan.PowerMath;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -21,8 +20,9 @@ public class GameManager extends Activity {
     public long timeLeft;
 
     public boolean streak = false;
+    public boolean backPressed = false;
 
-    SharedPreferences sharedPreferences;
+
     Player player;
     ArrayList<Class> levels;
     @Override
@@ -90,15 +90,15 @@ public class GameManager extends Activity {
             } else {
                 streak = false;
                 temp = data.getLongExtra("time", 30000);
-                if (temp == 0) {
+                backPressed = data.getExtras().getBoolean("back", false);
+
+                temp = temp / 1000;
+                temp = temp * 1000;
+                timeLeft = temp;
+
+                if (backPressed) {
                     player.set_lives(1);
-
-                } else {
-                    temp = temp / 1000;
-                    temp = temp * 1000;
-                    timeLeft = temp;
                 }
-
                 player.set_lives(player.get_lives() - 1);
                 if (player.get_lives() == 0) {
                     Toast.makeText(this, "You Lost", Toast.LENGTH_SHORT).show();
