@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -33,7 +34,9 @@ public class SettingScreen extends Activity {
     Switch musicSwtich;
     Switch effectSwitch;
 
-    Boolean nameChanged = false;
+    boolean musicOn = true;
+    boolean effectsOn = true;
+    boolean nameChanged = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +53,19 @@ public class SettingScreen extends Activity {
         musicSwtich = findViewById(R.id.setting_music_switch);
         effectSwitch = findViewById(R.id.setting_effects_switch);
 
+        musicSwtich.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                musicOn = isChecked;
+            }
+        });
+
+        effectSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                effectsOn = isChecked;
+            }
+        });
 
 
         updateVariables();
@@ -91,8 +107,8 @@ public class SettingScreen extends Activity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra("music", musicSwtich.isChecked());
-        intent.putExtra("effects", effectSwitch.isChecked());
+        intent.putExtra("music", musicOn);
+        intent.putExtra("effects", effectsOn);
 
         if (nameChanged) {
             intent.putExtra("name", inputName.getText().toString());

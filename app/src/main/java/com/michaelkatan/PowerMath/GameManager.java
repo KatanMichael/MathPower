@@ -39,10 +39,6 @@ public class GameManager extends Activity {
         ring.start();
 
 
-
-
-
-
         int mode;
         mode = getIntent().getExtras().getInt("practice", 0);
 

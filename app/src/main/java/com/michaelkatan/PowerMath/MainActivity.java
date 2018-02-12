@@ -113,6 +113,8 @@ public class MainActivity extends Activity
                 intent.putExtra("practice", 0);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 practise_mode = false;
+                intent.putExtra("music", musicOn);
+                intent.putExtra("effects", effectsOn);
                 startActivityForResult(intent, GAMEMANAGER);
 
             }
@@ -307,6 +309,9 @@ public class MainActivity extends Activity
                 player.set_name(temp);
                 myRef.child("users").child("" + user.getUid()).child("_name").setValue(temp);
 
+                musicOn = data.getExtras().getBoolean("music", true);
+                effectsOn = data.getExtras().getBoolean("effects", true);
+            } else {
                 musicOn = data.getExtras().getBoolean("music", true);
                 effectsOn = data.getExtras().getBoolean("effects", true);
             }
