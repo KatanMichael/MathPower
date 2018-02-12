@@ -1,5 +1,6 @@
 package com.michaelkatan.PowerMath;
 
+import android.animation.Animator;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 /**
  * Created by MichaelKatan on 18/01/2018.
@@ -54,6 +57,8 @@ public class TrueFalseSign extends Activity {
     ImageView fiveRowAnim;
     ImageView tenRowAnim;
 
+    LottieAnimationView rightanswer_anim;
+
     MyTimer timer;
 
     SharedPreferences sharedPreferences;
@@ -62,6 +67,7 @@ public class TrueFalseSign extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.true_or_false_sign);
 
+        rightanswer_anim=findViewById(R.id.right_answer_anim);
 
         starAnim=findViewById(R.id.star_anim);
         fiveRowAnim=findViewById(R.id.five_row);
@@ -178,6 +184,9 @@ public class TrueFalseSign extends Activity {
 
 
     }
+
+
+
 
 
     private void animationManager()

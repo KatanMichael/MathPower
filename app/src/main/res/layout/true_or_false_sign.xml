@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bluebackground"
 
     >
@@ -130,6 +131,21 @@
         android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/trueFalse_heart2"
         android:src="@drawable/hearticon" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="ThumbsUp-azul-gris-2.json"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/ten_row"
+        android:layout_marginTop="50dp"
+        android:visibility="invisible"
+        android:id="@+id/right_answer_anim"
+
+
+        />
 
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.michaelkatan.PowerMath;
 
+import android.animation.Animator;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 import java.util.ArrayList;
 
@@ -63,7 +66,7 @@ public class AmericanQuiz extends Activity {
     ImageView fiveRowAnim;
     ImageView tenRowAnim;
 
-
+    LottieAnimationView rightanswer_anim;
     ArrayList<Button> answerBtns;
 
     MyTimer timer;
@@ -75,6 +78,7 @@ public class AmericanQuiz extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.american_quiz);
 
+        rightanswer_anim=findViewById(R.id.right_answer_anim);
 
         starAnim=findViewById(R.id.star_anim);
         fiveRowAnim=findViewById(R.id.five_row);
@@ -142,12 +146,17 @@ public class AmericanQuiz extends Activity {
                     if (temp == answer) {
                         //Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
                         right = true;
+                        timer.cancel();
+                        rightanswer_anim.setVisibility(View.VISIBLE);
+                        rightanswer_anim.playAnimation();
                         rightAnswersInRow++;
-                        finishGame();
+
                     } else {
                         right = false;
+                        timer.cancel();
                         rightAnswersInRow=0;
-                        finishGame();
+                        rightanswer_anim.setVisibility(View.VISIBLE);
+                        rightanswer_anim.playAnimation();
                     }
 
                     if (count != 3) {
@@ -162,7 +171,28 @@ public class AmericanQuiz extends Activity {
             }
         });
 
+        rightanswer_anim.addAnimatorListener(new Animator.AnimatorListener()
+        {
+            @Override
+            public void onAnimationStart(Animator animator) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                finishGame();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
     }
 
     public void animationManger()
