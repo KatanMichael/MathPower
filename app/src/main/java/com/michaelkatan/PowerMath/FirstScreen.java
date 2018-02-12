@@ -42,7 +42,7 @@ public class FirstScreen extends Activity {
     LottieAnimationView loadingAnim;
     LottieAnimationView happyAnim;
     LottieAnimationView chackedgAnim;
-
+    LottieAnimationView warning_sign;
     Boolean test = true;
 
     private FirebaseAuth myAuth;
@@ -62,6 +62,10 @@ public class FirstScreen extends Activity {
         loadingAnim.loop(true);
         loadingAnim.setVisibility(View.GONE);
         loadingAnim.useHardwareAcceleration();
+
+        warning_sign=findViewById(R.id.first_warning_view);
+        warning_sign.loop(false);
+
 
         chackedgAnim = findViewById(R.id.first_ChackAnim_view);
         chackedgAnim.setVisibility(View.GONE);
@@ -190,7 +194,9 @@ public class FirstScreen extends Activity {
                                 Toast.makeText(FirstScreen.this, "" + task.getException(),
                                         Toast.LENGTH_SHORT).show();
                                 loadingAnim.pauseAnimation();
-                                loadingAnim.setVisibility(View.GONE);
+                                loadingAnim.setVisibility(View.INVISIBLE);
+                                warning_sign.setVisibility(View.VISIBLE);
+                                warning_sign.playAnimation();
                                 first_signIn.setClickable(true);
                             }
 

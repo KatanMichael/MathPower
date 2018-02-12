@@ -72,15 +72,26 @@
         app:lottie_fileName="loading.json" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/first_ChackAnim_view"
+    android:id="@+id/first_ChackAnim_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/first_signup_btn"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="15dp"
+
+    app:lottie_autoPlay="false"
+    app:lottie_fileName="checked_done_.json" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/first_warning_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/first_signup_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-
+        android:visibility="invisible"
         app:lottie_autoPlay="false"
-        app:lottie_fileName="checked_done_.json" />
+        app:lottie_fileName="warning_sign.json" />
 
 
 
