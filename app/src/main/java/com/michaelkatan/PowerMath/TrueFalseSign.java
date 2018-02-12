@@ -20,15 +20,11 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-/**
- * Created by MichaelKatan on 18/01/2018.
- */
 
 public class TrueFalseSign extends Activity {
 
     ActionBar bar;
     Window window;
-
 
     int totalScore;
     int totalQuastions;
@@ -43,7 +39,6 @@ public class TrueFalseSign extends Activity {
     TextView sign_leftOP_TV;
     TextView sign_rightOP_TV;
     TextView sign_mid_TV;
-
 
     ImageView[] hearts;
     int counterHearts = 0;
