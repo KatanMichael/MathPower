@@ -2,6 +2,7 @@ package com.michaelkatan.PowerMath;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 /**
  * Created by MichaelKatan on 17/01/2018.
  */
+
+
 
 public class GameManager extends Activity {
     public static int NEWLEVEL = 1;
@@ -23,12 +26,15 @@ public class GameManager extends Activity {
     public boolean backPressed = false;
     public boolean timeEnd = false;
 
-
+    MediaPlayer ring;
     Player player;
     ArrayList<Class> levels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ring= MediaPlayer.create(GameManager.this,R.raw.ameno);
+        ring.start();
 
         int mode;
         mode = getIntent().getExtras().getInt("practice", 0);
@@ -116,6 +122,7 @@ public class GameManager extends Activity {
 
                     intent.putExtra("score", totalscore);
                     setResult(RESULT_OK, intent);
+                    ring.stop();
                     finish();
                 } else {
 
@@ -126,4 +133,5 @@ public class GameManager extends Activity {
         }
 
     }
+
 }
