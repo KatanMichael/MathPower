@@ -1,10 +1,14 @@
 package com.michaelkatan.PowerMath;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,6 +18,9 @@ import android.widget.Toast;
  */
 
 public class SettingScreen extends Activity {
+    ActionBar bar;
+    Window window;
+
     EditText inputName;
     Button changeName_btn;
 
@@ -38,6 +45,12 @@ public class SettingScreen extends Activity {
             }
         });
 
+
+        bar = getActionBar();
+        bar.hide();
+        window = this.getWindow();
+        changeStatusBarColor(R.color.colorPrimaryDark);
+
     }
 
     private void updateVariables() {
@@ -58,4 +71,13 @@ public class SettingScreen extends Activity {
 
         finish();
     }
+
+    public void changeStatusBarColor(int color) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(getResources().getColor(color));
+        }
+    }
+
 }
