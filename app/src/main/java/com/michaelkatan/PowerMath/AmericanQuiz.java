@@ -394,6 +394,7 @@ public class AmericanQuiz extends Activity {
 
             Intent intent = new Intent();
             intent.putExtra("time", 0);
+            intent.putExtra("endTime", true);
             setResult(RESULT_CANCELED, intent);
             finish();
         }

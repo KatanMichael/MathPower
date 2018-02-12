@@ -385,6 +385,7 @@ public class TrueFalseSign extends Activity {
             Toast.makeText(TrueFalseSign.this, getResources().getText(R.string.time_up).toString(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("time", 0);
+            intent.putExtra("endTime", true);
             setResult(RESULT_CANCELED, intent);
             finish();
 

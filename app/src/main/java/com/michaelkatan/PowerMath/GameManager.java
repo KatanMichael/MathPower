@@ -21,6 +21,7 @@ public class GameManager extends Activity {
 
     public boolean streak = false;
     public boolean backPressed = false;
+    public boolean timeEnd = false;
 
 
     Player player;
@@ -92,6 +93,8 @@ public class GameManager extends Activity {
                 temp = data.getLongExtra("time", 30000);
                 backPressed = data.getExtras().getBoolean("back", false);
 
+                timeEnd = data.getExtras().getBoolean("endTime", false);
+
                 temp = temp / 1000;
                 temp = temp * 1000;
                 timeLeft = temp;
@@ -99,6 +102,10 @@ public class GameManager extends Activity {
                 if (backPressed) {
                     player.set_lives(1);
                     totalscore = 0;
+                }
+
+                if (timeEnd) {
+                    player.set_lives(1);
                 }
 
 
