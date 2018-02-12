@@ -56,7 +56,7 @@ public class GameManager extends Activity {
         temp = (int) ((Math.random() * 100) % levels.size());
 
         Intent intent = new Intent(GameManager.this, levels.get(temp));
-        intent.putExtra("score", rightAnswars);
+        intent.putExtra("score", totalscore);
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
         intent.putExtra("time", timeLeft);

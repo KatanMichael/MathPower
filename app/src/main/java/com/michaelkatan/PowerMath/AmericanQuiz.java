@@ -119,7 +119,7 @@ public class AmericanQuiz extends Activity {
         timer.start();
 
 
-        scoreTv.setText(getResources().getText(R.string.score).toString() + " " + rightAnswers + " / " + totalQuastions);
+        scoreTv.setText(getResources().getText(R.string.score).toString() + " " + rightAnswers);
         getRandomQuastion();
         getRandomAnswers();
         animationManger();

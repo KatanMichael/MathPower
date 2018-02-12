@@ -89,7 +89,7 @@ public class TrueFalseSign extends Activity {
         animationManager();
 
 
-        sign_score_TV.setText(getResources().getText(R.string.score).toString() + " " + totalScore + " / " + totalQuastions);
+        sign_score_TV.setText(getResources().getText(R.string.score).toString() + " " + totalScore);
         setUpQuestion();
         setUpQuestion();
         setUpMidSign();
