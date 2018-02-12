@@ -284,10 +284,12 @@ public class TrueFalseSign extends Activity {
         totalQuastions = temp;
         temp = getIntent().getExtras().getInt("lives");
         counterHearts = temp;
-        temp = getIntent().getExtras().getInt("rightAnswersInRow");
+        temp = getIntent().getExtras().getInt("answerStreak");
         rightAnswersInRow = temp;
+
         timeTemp = getIntent().getExtras().getLong("time");
         time = timeTemp;
+
         streak = getIntent().getExtras().getBoolean("onStreak", true);
 
 
