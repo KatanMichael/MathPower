@@ -143,6 +143,7 @@ public class AmericanQuiz extends Activity {
         sumbit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                disableClicks();
                 if (answerTV.getText().toString().equals("_____________________")) {
                     Toast.makeText(AmericanQuiz.this, "Select Answer First..", Toast.LENGTH_SHORT).show();
 
@@ -222,21 +223,23 @@ public class AmericanQuiz extends Activity {
             public void onAnimationRepeat(Animator animator) {
 
             }
-        });;
+        });
+
+        // Toast.makeText(this, "Right: "+answer, Toast.LENGTH_SHORT).show();
     }
 
     public void animationManger()
     {
         if (streak) {
 
-            if (rightAnswers >= 5) {
-                if (rightAnswers % 15 == 0) {
+            if (rightAnswersInRow >= 5) {
+                if (rightAnswersInRow % 15 == 0) {
                     Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
                     starAnim.startAnimation(animation1);
-                } else if (rightAnswers % 10 == 0) {
+                } else if (rightAnswersInRow % 10 == 0) {
                     Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
                     tenRowAnim.startAnimation(animation1);
-                } else if (rightAnswers % 5 == 0) {
+                } else if (rightAnswersInRow % 5 == 0) {
                     Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_and_fade);
                     fiveRowAnim.startAnimation(animation1);
                 }
@@ -267,6 +270,9 @@ public class AmericanQuiz extends Activity {
         timeTemp = getIntent().getExtras().getLong("time");
         time = timeTemp;
         streak = getIntent().getExtras().getBoolean("onStreak", true);
+        temp = getIntent().getExtras().getInt("answerStreak", 0);
+        rightAnswersInRow = temp;
+
 
     }
 
@@ -361,6 +367,13 @@ public class AmericanQuiz extends Activity {
         super.onStop();
     }
 
+    public void disableClicks() {
+        for (int i = 0; i < answerBtns.size(); i++) {
+            answerBtns.get(i).setClickable(false);
+        }
+
+    }
+
     public class myClickListener implements View.OnClickListener {
         Button b;
 
@@ -371,6 +384,8 @@ public class AmericanQuiz extends Activity {
             sumbit_btn.performClick();
 
         }
+
+
     }
 
     public class MyTimer extends CountDownTimer {

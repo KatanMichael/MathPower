@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class GameManager extends Activity {
     public static int NEWLEVEL = 1;
     public int totalscore = 0;
-    public int rightAnswars = 0;
+    public int rightAnswarsStreak = 0;
     public int totalQuastions = 0;
     public long timeLeft;
 
@@ -66,6 +66,7 @@ public class GameManager extends Activity {
 
         Intent intent = new Intent(GameManager.this, levels.get(temp));
         intent.putExtra("score", totalscore);
+        intent.putExtra("answerStreak", rightAnswarsStreak);
         intent.putExtra("total", totalQuastions);
         intent.putExtra("lives", player.get_lives());
         intent.putExtra("time", timeLeft);
@@ -91,7 +92,7 @@ public class GameManager extends Activity {
 
                 timeLeft = temp;
                 totalQuastions++;
-                rightAnswars++;
+                rightAnswarsStreak++;
                 totalscore = totalscore + (int) temp / 1000;
 
                 startRandomLevel();
@@ -100,7 +101,7 @@ public class GameManager extends Activity {
                 streak = false;
                 temp = data.getLongExtra("time", 30000);
                 backPressed = data.getExtras().getBoolean("back", false);
-
+                rightAnswarsStreak = 0;
                 timeEnd = data.getExtras().getBoolean("endTime", false);
 
                 temp = temp / 1000;

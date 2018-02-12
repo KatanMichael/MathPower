@@ -174,12 +174,9 @@ public class TrueFalseSign extends Activity {
     }
 
 
-
-
-
-
-
     public void rightAnswer() {
+        sign_false_btn.setClickable(false);
+        sign_true_btn.setClickable(false);
         rightanswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -213,6 +210,9 @@ public class TrueFalseSign extends Activity {
     }
 
     public void wrongAnswer() {
+        sign_false_btn.setClickable(false);
+        sign_true_btn.setClickable(false);
+
        wronganswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -289,10 +289,12 @@ public class TrueFalseSign extends Activity {
         totalQuastions = temp;
         temp = getIntent().getExtras().getInt("lives");
         counterHearts = temp;
-        temp = getIntent().getExtras().getInt("rightAnswersInRow");
+        temp = getIntent().getExtras().getInt("answerStreak");
         rightAnswersInRow = temp;
+
         timeTemp = getIntent().getExtras().getLong("time");
         time = timeTemp;
+
         streak = getIntent().getExtras().getBoolean("onStreak", true);
 
 
