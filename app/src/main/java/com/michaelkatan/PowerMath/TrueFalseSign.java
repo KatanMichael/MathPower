@@ -58,6 +58,7 @@ public class TrueFalseSign extends Activity {
     ImageView tenRowAnim;
 
     LottieAnimationView rightanswer_anim;
+    LottieAnimationView wronganswer_anim;
 
     MyTimer timer;
 
@@ -68,7 +69,7 @@ public class TrueFalseSign extends Activity {
         setContentView(R.layout.true_or_false_sign);
 
         rightanswer_anim=findViewById(R.id.right_answer_anim);
-
+        wronganswer_anim=findViewById(R.id.wrong_answer_anim);
         starAnim=findViewById(R.id.star_anim);
         fiveRowAnim=findViewById(R.id.five_row);
         tenRowAnim=findViewById(R.id.ten_row);
@@ -120,13 +121,9 @@ public class TrueFalseSign extends Activity {
 
                 if (sign.equals(">")) {
                     if (leftSum < rightSum) {
-                        setResult(RESULT_OK, intent);
-                        finish();
-                        overridePendingTransition(0, 0);
+                        rightAnswer();
                     } else {
-                        setResult(RESULT_CANCELED, intent);
-                        finish();
-                        overridePendingTransition(0, 0);
+                        wrongAnswer();
                     }
                 }
 
@@ -134,9 +131,7 @@ public class TrueFalseSign extends Activity {
                     if (leftSum > rightSum) {
                         rightAnswer();
                     } else {
-                        setResult(RESULT_CANCELED, intent);
-                        finish();
-                        overridePendingTransition(0, 0);
+                        wrongAnswer();
                     }
                 }
 
@@ -154,9 +149,7 @@ public class TrueFalseSign extends Activity {
                     if (leftSum > rightSum) {
                         rightAnswer();
                     } else {
-                        setResult(RESULT_CANCELED, intent);
-                        finish();
-                        overridePendingTransition(0, 0);
+                        wrongAnswer();
                     }
 
                 }
@@ -165,9 +158,7 @@ public class TrueFalseSign extends Activity {
                     if (leftSum < rightSum) {
                         rightAnswer();
                     } else {
-                        setResult(RESULT_CANCELED, intent);
-                        finish();
-                        overridePendingTransition(0, 0);
+                        wrongAnswer();
                     }
                 }
 
@@ -176,6 +167,12 @@ public class TrueFalseSign extends Activity {
 
 
     }
+
+
+
+
+
+
 
     public void rightAnswer() {
         rightanswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
@@ -206,6 +203,39 @@ public class TrueFalseSign extends Activity {
 
         rightanswer_anim.setVisibility(View.VISIBLE);
         rightanswer_anim.playAnimation();
+
+
+    }
+
+    public void wrongAnswer() {
+       wronganswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                Intent intent = new Intent();
+                intent.putExtra("time", timeLeft);
+                setResult(RESULT_CANCELED, intent);
+                finish();
+                overridePendingTransition(0, 0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        wronganswer_anim.setVisibility(View.VISIBLE);
+        wronganswer_anim.playAnimation();
 
 
     }
