@@ -98,11 +98,15 @@ public class GameManager extends Activity {
 
                 if (backPressed) {
                     player.set_lives(1);
+                    totalscore = 0;
                 }
+
+
                 player.set_lives(player.get_lives() - 1);
                 if (player.get_lives() == 0) {
                     Toast.makeText(this, "You Lost", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
+
                     intent.putExtra("score", totalscore);
                     setResult(RESULT_OK, intent);
                     finish();
