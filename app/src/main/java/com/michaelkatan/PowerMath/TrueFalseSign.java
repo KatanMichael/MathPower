@@ -132,9 +132,7 @@ public class TrueFalseSign extends Activity {
 
                 if (sign.equals("<")) {
                     if (leftSum > rightSum) {
-                        setResult(RESULT_OK, intent);
-                        finish();
-                        overridePendingTransition(0, 0);
+                        rightAnswer();
                     } else {
                         setResult(RESULT_CANCELED, intent);
                         finish();
@@ -149,16 +147,12 @@ public class TrueFalseSign extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("time", timeLeft);
-
                 timer.cancel();
                 String sign = sign_mid_TV.getText().toString();
 
                 if (sign.equals(">")) {
                     if (leftSum > rightSum) {
-                        setResult(RESULT_OK, intent);
-                        finish();
-                        overridePendingTransition(0, 0);
+                        rightAnswer();
                     } else {
                         setResult(RESULT_CANCELED, intent);
                         finish();
@@ -169,9 +163,7 @@ public class TrueFalseSign extends Activity {
 
                 if (sign.equals("<")) {
                     if (leftSum < rightSum) {
-                        setResult(RESULT_OK, intent);
-                        finish();
-                        overridePendingTransition(0, 0);
+                        rightAnswer();
                     } else {
                         setResult(RESULT_CANCELED, intent);
                         finish();
@@ -185,7 +177,38 @@ public class TrueFalseSign extends Activity {
 
     }
 
+    public void rightAnswer() {
+        rightanswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                Intent intent = new Intent();
+                intent.putExtra("time", timeLeft);
+                setResult(RESULT_OK, intent);
+                finish();
+                overridePendingTransition(0, 0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        rightanswer_anim.setVisibility(View.VISIBLE);
+        rightanswer_anim.playAnimation();
+
+
+    }
 
 
 
