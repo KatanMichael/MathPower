@@ -192,7 +192,7 @@ public class AmericanQuiz extends Activity {
             public void onAnimationRepeat(Animator animator) {
 
             }
-        });
+        });;
     }
 
     public void animationManger()
