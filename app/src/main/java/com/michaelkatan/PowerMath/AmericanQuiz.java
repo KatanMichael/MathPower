@@ -74,6 +74,7 @@ public class AmericanQuiz extends Activity {
 
     MyTimer timer;
     MediaPlayer correctSound;
+    MediaPlayer wrongSound;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -82,7 +83,7 @@ public class AmericanQuiz extends Activity {
         setContentView(R.layout.american_quiz);
 
         correctSound= MediaPlayer.create(AmericanQuiz.this,R.raw.correctans);
-
+        wrongSound= MediaPlayer.create(AmericanQuiz.this,R.raw.wrongans);
 
         rightanswer_anim=findViewById(R.id.right_answer_anim);
         wronganswer_anim=findViewById(R.id.wrong_answer_anim);
@@ -155,14 +156,15 @@ public class AmericanQuiz extends Activity {
                         //Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
                         right = true;
                         timer.cancel();
+                        correctSound.start();
                         rightanswer_anim.setVisibility(View.VISIBLE);
                         rightanswer_anim.playAnimation();
-                        correctSound.start();
                         rightAnswersInRow++;
 
                     } else {
                         right = false;
                         timer.cancel();
+                        wrongSound.start();
                         rightAnswersInRow=0;
                         wronganswer_anim.setVisibility(View.VISIBLE);
                         wronganswer_anim.playAnimation();
