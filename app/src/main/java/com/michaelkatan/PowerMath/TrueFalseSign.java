@@ -58,14 +58,15 @@ public class TrueFalseSign extends Activity {
 
     MyTimer timer;
     MediaPlayer correctSound;
+    MediaPlayer wrongSound;
     SharedPreferences sharedPreferences;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.true_or_false_sign);
 
-        correctSound= MediaPlayer.create(TrueFalseSign.this,R.raw.ameno);
-        correctSound.start();
+        correctSound= MediaPlayer.create(TrueFalseSign.this,R.raw.correctans);
+        wrongSound= MediaPlayer.create(TrueFalseSign.this,R.raw.wrongans);
 
 
         rightanswer_anim=findViewById(R.id.right_answer_anim);
@@ -175,7 +176,7 @@ public class TrueFalseSign extends Activity {
         rightanswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-
+                correctSound.start();
             }
 
             @Override
@@ -211,7 +212,7 @@ public class TrueFalseSign extends Activity {
        wronganswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-
+                wrongSound.start();
             }
 
             @Override

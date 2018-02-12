@@ -27,6 +27,7 @@ public class GameManager extends Activity {
     public boolean timeEnd = false;
 
     MediaPlayer ring;
+    MediaPlayer heartbeat;
     Player player;
     ArrayList<Class> levels;
     @Override
@@ -35,8 +36,11 @@ public class GameManager extends Activity {
 
 
         ring= MediaPlayer.create(GameManager.this,R.raw.ameno);
-        ring.setVolume(0.5f,0.5f);
         ring.start();
+
+
+
+
 
 
         int mode;
@@ -80,6 +84,7 @@ public class GameManager extends Activity {
     }
 
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         long temp;
@@ -92,6 +97,7 @@ public class GameManager extends Activity {
                 temp = temp * 1000;
 
                 timeLeft = temp;
+
                 totalQuastions++;
                 rightAnswarsStreak++;
                 totalscore = totalscore + (int) temp / 1000;
