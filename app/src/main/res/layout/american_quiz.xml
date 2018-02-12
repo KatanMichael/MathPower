@@ -177,5 +177,19 @@
 
 
         />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="x_pop.json"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/submit_btn"
+        android:layout_marginTop="210dp"
+        android:visibility="invisible"
+        android:id="@+id/wrong_answer_anim"
+
+
+        />
 </RelativeLayout>
 

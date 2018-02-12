@@ -67,6 +67,8 @@ public class AmericanQuiz extends Activity {
     ImageView tenRowAnim;
 
     LottieAnimationView rightanswer_anim;
+    LottieAnimationView wronganswer_anim;
+
     ArrayList<Button> answerBtns;
 
     MyTimer timer;
@@ -79,6 +81,7 @@ public class AmericanQuiz extends Activity {
         setContentView(R.layout.american_quiz);
 
         rightanswer_anim=findViewById(R.id.right_answer_anim);
+        wronganswer_anim=findViewById(R.id.wrong_answer_anim);
 
         starAnim=findViewById(R.id.star_anim);
         fiveRowAnim=findViewById(R.id.five_row);
@@ -155,8 +158,8 @@ public class AmericanQuiz extends Activity {
                         right = false;
                         timer.cancel();
                         rightAnswersInRow=0;
-                        rightanswer_anim.setVisibility(View.VISIBLE);
-                        rightanswer_anim.playAnimation();
+                        wronganswer_anim.setVisibility(View.VISIBLE);
+                        wronganswer_anim.playAnimation();
                     }
 
                     if (count != 3) {
@@ -168,6 +171,28 @@ public class AmericanQuiz extends Activity {
                 {
                     animationManger();
                 }
+            }
+        });
+
+        wronganswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                finishGame();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
             }
         });
 
