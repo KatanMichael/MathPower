@@ -44,6 +44,7 @@ public class AmericanQuiz extends Activity {
     long time;
     long timeLeft;
     boolean streak;
+    boolean effects;
 
     boolean right = false;
 
@@ -158,7 +159,8 @@ public class AmericanQuiz extends Activity {
                         //Toast.makeText(AmericanQuiz.this, "Your Right!", Toast.LENGTH_SHORT).show();
                         right = true;
                         timer.cancel();
-                        correctSound.start();
+                        if (effects)
+                            correctSound.start();
                         rightanswer_anim.setVisibility(View.VISIBLE);
                         rightanswer_anim.playAnimation();
                         //correctSound.start();
@@ -168,7 +170,9 @@ public class AmericanQuiz extends Activity {
                     } else {
                         right = false;
                         timer.cancel();
-                        wrongSound.start();
+                        if (effects)
+                            wrongSound.start();
+
                         rightAnswersInRow=0;
                         wronganswer_anim.setVisibility(View.VISIBLE);
                         wronganswer_anim.playAnimation();
@@ -279,6 +283,7 @@ public class AmericanQuiz extends Activity {
         temp = getIntent().getExtras().getInt("answerStreak", 0);
         rightAnswersInRow = temp;
 
+        effects = getIntent().getExtras().getBoolean("effects", true);
 
     }
 

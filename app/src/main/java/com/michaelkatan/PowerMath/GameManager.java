@@ -25,6 +25,9 @@ public class GameManager extends Activity {
     public boolean streak = false;
     public boolean backPressed = false;
     public boolean timeEnd = false;
+    public boolean musicOn;
+    public boolean effectsOn;
+
 
     MediaPlayer ring;
     Player player;
@@ -36,11 +39,13 @@ public class GameManager extends Activity {
 
         ring= MediaPlayer.create(GameManager.this,R.raw.ameno);
         ring.setVolume(0.3f,0.3f);
-        ring.start();
+
 
 
         int mode;
         mode = getIntent().getExtras().getInt("practice", 0);
+        musicOn = getIntent().getExtras().getBoolean("music", true);
+        effectsOn = getIntent().getExtras().getBoolean("effects", true);
 
 //k
         player = new Player();
@@ -55,6 +60,11 @@ public class GameManager extends Activity {
         } else {
             timeLeft = 9999999;
         }
+
+        if (musicOn) {
+            ring.start();
+        }
+
         startRandomLevel();
 
     }
@@ -72,6 +82,7 @@ public class GameManager extends Activity {
         intent.putExtra("lives", player.get_lives());
         intent.putExtra("time", timeLeft);
         intent.putExtra("onStreak", streak);
+        intent.putExtra("effects", effectsOn);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 

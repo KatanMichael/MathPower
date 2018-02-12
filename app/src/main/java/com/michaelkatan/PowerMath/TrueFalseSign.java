@@ -34,6 +34,7 @@ public class TrueFalseSign extends Activity {
     long time;
     long timeLeft = 0;
     boolean streak;
+    boolean effects;
 
     TextView sign_timerTV;
     TextView sign_score_TV;
@@ -60,6 +61,7 @@ public class TrueFalseSign extends Activity {
     MediaPlayer correctSound;
     MediaPlayer wrongSound;
     SharedPreferences sharedPreferences;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,7 +181,8 @@ public class TrueFalseSign extends Activity {
         rightanswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                correctSound.start();
+                if (effects)
+                    correctSound.start();
             }
 
             @Override
@@ -215,7 +218,8 @@ public class TrueFalseSign extends Activity {
        wronganswer_anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                wrongSound.start();
+                if (effects)
+                    wrongSound.start();
             }
 
             @Override
@@ -295,6 +299,7 @@ public class TrueFalseSign extends Activity {
         time = timeTemp;
 
         streak = getIntent().getExtras().getBoolean("onStreak", true);
+        effects = getIntent().getExtras().getBoolean("effects", true);
 
 
     }
