@@ -84,6 +84,8 @@ public class AmericanQuiz extends Activity {
 
         correctSound= MediaPlayer.create(AmericanQuiz.this,R.raw.correctans);
         wrongSound= MediaPlayer.create(AmericanQuiz.this,R.raw.wrongans);
+        correctSound.setVolume(0.2f,0.2f);
+        wrongSound.setVolume(0.2f,0.2f);
 
         rightanswer_anim=findViewById(R.id.right_answer_anim);
         wronganswer_anim=findViewById(R.id.wrong_answer_anim);

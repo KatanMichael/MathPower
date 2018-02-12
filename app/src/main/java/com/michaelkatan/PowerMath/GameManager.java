@@ -35,6 +35,7 @@ public class GameManager extends Activity {
         super.onCreate(savedInstanceState);
 
         ring= MediaPlayer.create(GameManager.this,R.raw.ameno);
+        ring.setVolume(0.3f,0.3f);
         ring.start();
 
 
