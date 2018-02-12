@@ -11,6 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -24,6 +26,13 @@ public class SettingScreen extends Activity {
     EditText inputName;
     Button changeName_btn;
 
+    TextView email_tv;
+    TextView username_tv;
+    TextView highScore_tv;
+
+    Switch musicSwtich;
+    Switch effectSwitch;
+
     Boolean nameChanged = false;
 
     @Override
@@ -34,6 +43,15 @@ public class SettingScreen extends Activity {
         inputName = findViewById(R.id.setting_nameET);
         changeName_btn = findViewById(R.id.settings_nickname_btn);
 
+        username_tv = findViewById(R.id.setting_username_tv);
+        email_tv = findViewById(R.id.setting_email_tv);
+        highScore_tv = findViewById(R.id.setting_highscore_tv);
+
+        musicSwtich = findViewById(R.id.setting_music_switch);
+        effectSwitch = findViewById(R.id.setting_effects_switch);
+
+
+
         updateVariables();
 
         changeName_btn.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +59,7 @@ public class SettingScreen extends Activity {
             public void onClick(View v) {
                 nameChanged = true;
                 Toast.makeText(SettingScreen.this, "Nickname Changed", Toast.LENGTH_SHORT).show();
+                username_tv.setText("Username: " + inputName.getText().toString());
                 //TODO Add to string.xml and translate
             }
         });
@@ -55,13 +74,26 @@ public class SettingScreen extends Activity {
 
     private void updateVariables() {
         String temp;
+        int tempInt;
         temp = getIntent().getExtras().getString("username", " ");
         inputName.setText(temp);
+
+        tempInt = getIntent().getExtras().getInt("score");
+        highScore_tv.setText("Current Highscore: " + tempInt);
+
+        temp = getIntent().getExtras().getString("username");
+        username_tv.setText("Username: " + temp);
+
+        temp = getIntent().getExtras().getString("email");
+        email_tv.setText("Email: " + temp);
     }
 
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
+        intent.putExtra("music", musicSwtich.isChecked());
+        intent.putExtra("effects", effectSwitch.isChecked());
+
         if (nameChanged) {
             intent.putExtra("name", inputName.getText().toString());
             setResult(RESULT_OK, intent);

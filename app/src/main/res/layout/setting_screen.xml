@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/settings_nickname_btn"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp"
+        android:checked="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,7 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/setting_effects_switch"
-        android:layout_marginTop="25sp" />
+        android:layout_marginTop="25sp"
+        android:checked="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,10 +90,13 @@
         android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/setting_highscore_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/setting_username_tv"
-
+        android:layout_marginTop="5dp"
+        android:text="Max Score: "
+        android:textSize="20sp"
         />
 
 

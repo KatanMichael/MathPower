@@ -157,7 +157,7 @@ public class AmericanQuiz extends Activity {
                         timer.cancel();
                         rightanswer_anim.setVisibility(View.VISIBLE);
                         rightanswer_anim.playAnimation();
-                        correctSound.start();
+                        //correctSound.start();
                         rightAnswersInRow++;
 
                     } else {

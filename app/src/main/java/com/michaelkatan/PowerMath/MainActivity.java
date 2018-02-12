@@ -54,6 +54,8 @@ public class MainActivity extends Activity
     LottieAnimationView gearsAnim;
 
     boolean practise_mode = false;
+    boolean musicOn = true;
+    boolean effectsOn = true;
 
 
     @Override
@@ -149,6 +151,8 @@ public class MainActivity extends Activity
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SettingScreen.class);
                 intent.putExtra("username", player.get_name());
+                intent.putExtra("email", player.get_email());
+                intent.putExtra("score", player.get_score());
                 startActivityForResult(intent, SETTINGS);
             }
         });
@@ -302,6 +306,9 @@ public class MainActivity extends Activity
                 temp = data.getExtras().getString("name");
                 player.set_name(temp);
                 myRef.child("users").child("" + user.getUid()).child("_name").setValue(temp);
+
+                musicOn = data.getExtras().getBoolean("music", true);
+                effectsOn = data.getExtras().getBoolean("effects", true);
             }
         }
 
