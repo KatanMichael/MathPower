@@ -13,7 +13,8 @@
 
 
 
-   <gradient      android:startColor="@color/backgroundColor"
+   <gradient      android:startColor="#ff1a5b"
+       android:endColor="#262525"
 
 
 

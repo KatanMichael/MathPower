@@ -91,7 +91,7 @@
         android:layout_below="@+id/sign_leftOp"
         android:layout_marginTop="150dp"
         android:layout_toStartOf="@+id/sign_signTV"
-        android:background="@drawable/button_frame"
+        android:background="@drawable/button_frame2"
         android:text="@string/true_sign" />
 
     <Button
@@ -101,7 +101,7 @@
         android:layout_alignBottom="@+id/sign_true"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/sign_signTV"
-        android:background="@drawable/button_frame"
+        android:background="@drawable/button_frame2"
         android:text="@string/false_sign" />
 
     <ImageView
