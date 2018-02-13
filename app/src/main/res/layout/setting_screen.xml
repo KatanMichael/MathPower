@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bluebackground"
+    android:background="@drawable/gradient"
     >
 
 
@@ -30,7 +30,7 @@
         android:id="@+id/setting_effects_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
         android:layout_below="@id/settings_nickname_btn"
         android:layout_marginTop="25dp"
         android:checked="true" />
@@ -39,28 +39,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/settings_nickname_btn"
-        android:layout_marginStart="25sp"
         android:layout_marginTop="25dp"
         android:text="@string/Effects"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#000000"/>
 
     <Switch
         android:id="@+id/setting_music_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
         android:layout_below="@id/setting_effects_switch"
         android:layout_marginTop="25sp"
-        android:checked="true" />
+        android:checked="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/setting_effects_switch"
-        android:layout_marginStart="25sp"
         android:layout_marginTop="25sp"
         android:text="@string/Music"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/setting_userInfo_tv"
@@ -69,7 +70,8 @@
         android:layout_below="@id/setting_music_switch"
         android:layout_marginTop="45sp"
         android:text="@string/User_Info"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="#e7e7e7"/>
 
     <TextView
         android:id="@+id/setting_email_tv"
@@ -78,7 +80,8 @@
         android:layout_below="@id/setting_userInfo_tv"
         android:layout_marginTop="5dp"
         android:text="@string/email"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/setting_username_tv"
@@ -87,7 +90,8 @@
         android:layout_below="@id/setting_email_tv"
         android:layout_marginTop="5dp"
         android:text="@string/username"
-         android:textSize="20sp" />
+         android:textSize="20sp"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/setting_highscore_tv"
@@ -97,6 +101,7 @@
         android:text="@string/CurrentHighScore"
         android:layout_marginTop="5dp"
         android:textSize="20sp"
+        android:textColor="#000000"
         />
 
 

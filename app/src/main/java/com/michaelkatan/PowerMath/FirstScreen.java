@@ -40,7 +40,7 @@ public class FirstScreen extends Activity {
     String pass;
 
     LottieAnimationView loadingAnim;
-    LottieAnimationView happyAnim;
+
     LottieAnimationView chackedgAnim;
     LottieAnimationView warning_sign;
     Boolean test = true;
@@ -72,8 +72,7 @@ public class FirstScreen extends Activity {
         loadingAnim.loop(false);
 
 
-        happyAnim = findViewById(R.id.first_happyAnim_view);
-        happyAnim.useExperimentalHardwareAcceleration(false);
+
 
 
         myAuth = FirebaseAuth.getInstance();
@@ -221,12 +220,7 @@ public class FirstScreen extends Activity {
         changeStatusBarColor(R.color.colorPrimaryDark);
 
 
-        happyAnim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                happyAnim.playAnimation();
-            }
-        });
+
         loadingAnim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {

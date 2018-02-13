@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bluebackground"    >
+    android:background="@drawable/gradient"    >
 
 
     <TextView
@@ -12,53 +12,59 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:background="@drawable/main_text_frame"
+        android:background="@drawable/button_frame"
         android:elevation="6dp"
         android:padding="10dp"
         android:text="@string/welcomeText"
         android:textAlignment="center"
         android:textSize="35sp"
         android:textStyle="italic|bold"
+        android:textColor="#1e193b"
         />
 
     <Button
         android:id="@+id/play_btn"
-        style="@style/mainButtonStyle"
+        style="@style/mainButtonStyle2"
         android:layout_height="wrap_content"
 
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/mainText"
         android:layout_marginTop="48dp"
         android:text="@string/playText"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+       />
     <Button
         android:id="@+id/settings_btn"
-        style="@style/mainButtonStyle"
+        style="@style/mainButtonStyle2"
+
         android:layout_height="wrap_content"
         android:layout_below="@id/play_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
+
         android:text="@string/settings"
         />
 
     <Button
         android:id="@+id/leaderboard_btn"
-        style="@style/mainButtonStyle"
+        style="@style/mainButtonStyle2"
         android:layout_height="wrap_content"
         android:layout_below="@id/settings_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/leaderboard"
+
         />
 
     <Button
         android:id="@+id/practice_btn"
-        style="@style/mainButtonStyle"
+        style="@style/mainButtonStyle2"
         android:layout_height="wrap_content"
         android:layout_below="@id/leaderboard_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/practiceeMode"
+
         />
 
     <TextView
@@ -69,7 +75,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:text="@string/fetching_data"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#f9e5e5"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/main_fetching_anim"
