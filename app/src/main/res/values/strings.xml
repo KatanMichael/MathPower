@@ -25,6 +25,12 @@
     <string name="time">Time</string>
     <string name="time_up">Times Up!</string>
 
-    <string name="setting_name_btn">Change Nickname</string>
+    <string name="User_Info">User Info</string>
+    <string name="Effects">Efeects</string>
+    <string name="Music">Music</string>
+    <string name="ChangeNick">Change Nickname</string>
+    <string name="username">"Username: "</string>
+    <string name="email">"Email: "</string>
+    <string name="CurrentHighScore">"Current Highscore: "</string>
 
 </resources>

@@ -54,7 +54,6 @@
     <Button
         android:id="@+id/practice_btn"
         style="@style/mainButtonStyle"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/leaderboard_btn"
         android:layout_centerHorizontal="true"

@@ -3,6 +3,7 @@ package com.michaelkatan.PowerMath;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -67,18 +68,24 @@ public class SettingScreen extends Activity {
             }
         });
 
+        final String usernameString = getString(R.string.username);
+        final String emailString=getString(R.string.email);
+        final String HighscoreString=getString(R.string.CurrentHighScore);
 
         updateVariables();
+
+
 
         changeName_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nameChanged = true;
                 Toast.makeText(SettingScreen.this, "Nickname Changed", Toast.LENGTH_SHORT).show();
-                username_tv.setText("Username: " + inputName.getText().toString());
+                username_tv.setText(usernameString + inputName.getText().toString());
                 //TODO Add to string.xml and translate
             }
         });
+
 
 
         bar = getActionBar();
@@ -88,20 +95,25 @@ public class SettingScreen extends Activity {
 
     }
 
-    private void updateVariables() {
+    public void updateVariables() {
+
+        final String usernameString = getString(R.string.username);
+        final String emailString=getString(R.string.email);
+        final String HighscoreString=getString(R.string.CurrentHighScore);
+
         String temp;
         int tempInt;
         temp = getIntent().getExtras().getString("username", " ");
         inputName.setText(temp);
 
         tempInt = getIntent().getExtras().getInt("score");
-        highScore_tv.setText("Current Highscore: " + tempInt);
+        highScore_tv.setText(HighscoreString + tempInt);
 
         temp = getIntent().getExtras().getString("username");
-        username_tv.setText("Username: " + temp);
+        username_tv.setText(usernameString + temp);
 
         temp = getIntent().getExtras().getString("email");
-        email_tv.setText("Email: " + temp);
+        email_tv.setText(emailString + temp);
     }
 
     @Override
