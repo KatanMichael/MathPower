@@ -19,4 +19,11 @@
     <string name="score">ניקוד</string>
     <string name="time">זמן</string>
     <string name="time_up">נגמר הזמן!</string>
+    <string name="User_Info">פרטי משתמש</string>
+    <string name="Effects">אפקטים</string>
+    <string name="Music">מוזיקה</string>
+    <string name="ChangeNick">שינוי כינוי</string>
+    <string name="username">שם משתמש:</string>
+    <string name="CurrentHighScore">שיא נוכחי:</string>
+    <string name="email">אימייל:</string>
 </resources>

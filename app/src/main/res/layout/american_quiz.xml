@@ -74,7 +74,7 @@
 
     <Button
         android:id="@+id/btn_A"
-        style="@style/mainButtonStyle"
+        style="@style/mainButtonStyle2"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_below="@id/submit_btn"
@@ -84,7 +84,7 @@
 
     <Button
         android:id="@+id/btn_B"
-        style="@style/mainButtonStyle"
+        style="@style/mainButtonStyle2"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
@@ -97,7 +97,7 @@
 
     <Button
         android:id="@+id/btn_C"
-        style="@style/mainButtonStyle"
+        style="@style/mainButtonStyle2"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignStart="@+id/btn_A"
@@ -108,7 +108,7 @@
 
     <Button
         android:id="@+id/btn_D"
-        style="@style/mainButtonStyle"
+        style="@style/mainButtonStyle2"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"

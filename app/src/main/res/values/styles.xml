@@ -16,4 +16,16 @@
     </style>
 
 
+    <style name="mainButtonStyle2"  parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_frame2</item>
+        <item name="android:elevation">6dp</item>
+        <item name="android:layout_width">180dp</item>
+        <item name=" android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">25sp</item>
+
+    </style>
+
+
+
 </resources>
