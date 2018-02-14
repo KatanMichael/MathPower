@@ -61,7 +61,6 @@ public class FirstScreen extends Activity {
         loadingAnim.setAnimation("loading.json");
         loadingAnim.loop(true);
         loadingAnim.setVisibility(View.GONE);
-        loadingAnim.useHardwareAcceleration();
 
         chackedgAnim = findViewById(R.id.first_ChackAnim_view);
         chackedgAnim.setVisibility(View.GONE);
