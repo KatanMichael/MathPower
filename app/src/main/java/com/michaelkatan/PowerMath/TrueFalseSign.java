@@ -17,7 +17,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -393,7 +392,7 @@ public class TrueFalseSign extends Activity {
 
         @Override
         public void onFinish() {
-            Toast.makeText(TrueFalseSign.this, getResources().getText(R.string.time_up).toString(), Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(TrueFalseSign.this, getResources().getText(R.string.time_up).toString(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("time", 0);
             intent.putExtra("endTime", true);

@@ -3,7 +3,6 @@ package com.michaelkatan.PowerMath;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,15 +33,18 @@ public class SettingScreen extends Activity {
 
     Switch musicSwtich;
     Switch effectSwitch;
+    Switch easyMode;
 
     boolean musicOn = true;
     boolean effectsOn = true;
     boolean nameChanged = false;
+    boolean easyModeOn = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_screen);
+
 
         inputName = findViewById(R.id.setting_nameET);
         changeName_btn = findViewById(R.id.settings_nickname_btn);
@@ -53,6 +55,8 @@ public class SettingScreen extends Activity {
 
         musicSwtich = findViewById(R.id.setting_music_switch);
         effectSwitch = findViewById(R.id.setting_effects_switch);
+        easyMode = findViewById(R.id.setting_easymode_switch);
+
 
         musicSwtich.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -65,6 +69,14 @@ public class SettingScreen extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 effectsOn = isChecked;
+            }
+        });
+
+        easyMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                easyModeOn = isChecked;
+
             }
         });
 
@@ -121,6 +133,7 @@ public class SettingScreen extends Activity {
         Intent intent = new Intent();
         intent.putExtra("music", musicOn);
         intent.putExtra("effects", effectsOn);
+        intent.putExtra("easyMode", easyModeOn);
 
         if (nameChanged) {
             intent.putExtra("name", inputName.getText().toString());

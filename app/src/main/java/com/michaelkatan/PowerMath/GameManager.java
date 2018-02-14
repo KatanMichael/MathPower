@@ -27,6 +27,7 @@ public class GameManager extends Activity {
     public boolean timeEnd = false;
     public boolean musicOn;
     public boolean effectsOn;
+    public boolean easyModeOn;
 
 
     MediaPlayer ring;
@@ -46,6 +47,8 @@ public class GameManager extends Activity {
         mode = getIntent().getExtras().getInt("practice", 0);
         musicOn = getIntent().getExtras().getBoolean("music", true);
         effectsOn = getIntent().getExtras().getBoolean("effects", true);
+        easyModeOn = getIntent().getExtras().getBoolean("easyMode", true);
+
 
 //k
         player = new Player();
@@ -128,7 +131,10 @@ public class GameManager extends Activity {
                 }
 
                 if (timeEnd) {
-                    player.set_lives(1);
+                    Toast.makeText(this, getResources().getText(R.string.time_up).toString(), Toast.LENGTH_SHORT).show();
+                    if (!easyModeOn) {
+                        player.set_lives(1);
+                    }
                 }
 
 

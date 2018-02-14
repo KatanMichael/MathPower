@@ -432,7 +432,7 @@ public class AmericanQuiz extends Activity {
 
         @Override
         public void onFinish() {
-            Toast.makeText(AmericanQuiz.this, getResources().getText(R.string.time_up).toString(), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(AmericanQuiz.this, getResources().getText(R.string.time_up).toString(), Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent();
             intent.putExtra("time", 0);

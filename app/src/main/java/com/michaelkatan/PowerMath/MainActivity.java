@@ -56,6 +56,7 @@ public class MainActivity extends Activity
     boolean practise_mode = false;
     boolean musicOn = true;
     boolean effectsOn = true;
+    boolean easyModeOn = false;
 
 
     @Override
@@ -115,6 +116,7 @@ public class MainActivity extends Activity
                 practise_mode = false;
                 intent.putExtra("music", musicOn);
                 intent.putExtra("effects", effectsOn);
+                intent.putExtra("easyMode", easyModeOn);
                 startActivityForResult(intent, GAMEMANAGER);
 
             }
@@ -311,9 +313,12 @@ public class MainActivity extends Activity
 
                 musicOn = data.getExtras().getBoolean("music", true);
                 effectsOn = data.getExtras().getBoolean("effects", true);
+                easyModeOn = data.getExtras().getBoolean("easyMode", false);
             } else {
                 musicOn = data.getExtras().getBoolean("music", true);
                 effectsOn = data.getExtras().getBoolean("effects", true);
+                easyModeOn = data.getExtras().getBoolean("easyMode", false);
+
             }
         }
 
