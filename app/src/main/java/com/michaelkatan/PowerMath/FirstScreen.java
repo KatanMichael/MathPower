@@ -223,6 +223,9 @@ public class FirstScreen extends Activity {
         loadingAnim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
+                warning_sign.setVisibility(View.INVISIBLE);
+                chackedgAnim.setVisibility(View.INVISIBLE);
+
             }
 
             @Override
@@ -241,6 +244,25 @@ public class FirstScreen extends Activity {
             }
         });
 
+
+        loadingAnim.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 
     }
 

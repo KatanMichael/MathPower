@@ -26,4 +26,5 @@
     <string name="username">שם משתמש:</string>
     <string name="CurrentHighScore">שיא נוכחי:</string>
     <string name="email">אימייל:</string>
+    <string name="secTime">שניות</string>
 </resources>

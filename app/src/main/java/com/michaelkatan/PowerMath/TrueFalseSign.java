@@ -387,7 +387,7 @@ public class TrueFalseSign extends Activity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            sign_timerTV.setText(getResources().getText(R.string.time).toString() + " :" + millisUntilFinished / 1000 + " Sec");
+            sign_timerTV.setText(getResources().getText(R.string.time).toString() + " :" + millisUntilFinished / 1000 + " " + getResources().getString(R.string.secTime));
             timeLeft = millisUntilFinished;
         }
 

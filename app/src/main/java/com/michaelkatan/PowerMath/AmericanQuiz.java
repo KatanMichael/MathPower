@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -78,6 +79,8 @@ public class AmericanQuiz extends Activity {
     MediaPlayer wrongSound;
     SharedPreferences sharedPreferences;
 
+    Configuration config;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +115,7 @@ public class AmericanQuiz extends Activity {
         btn_C = findViewById(R.id.btn_C);
         btn_D = findViewById(R.id.btn_D);
 
+        config = getResources().getConfiguration();
 
         answerBtns = new ArrayList<>();
         answerBtns.add(btn_A);
@@ -313,7 +317,14 @@ public class AmericanQuiz extends Activity {
             answer = num1 - num2;
         }
 
-        quastionTV.setText(num1 + " " + sign + " " + num2 + " = ?");
+        if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+            quastionTV.setText(num1 + " " + sign + " " + num2 + " = ?");
+            quastionTV.setText("? = " + num2 + " " + sign + " " + num1);
+
+
+        } else {
+            quastionTV.setText(num1 + " " + sign + " " + num2 + " = ?");
+        }
 
     }
 
@@ -414,7 +425,7 @@ public class AmericanQuiz extends Activity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            timeTv.setText(getResources().getText(R.string.time).toString() + " :" + millisUntilFinished / 1000 + " Sec");
+            timeTv.setText(getResources().getText(R.string.time).toString() + " :" + millisUntilFinished / 1000 + " " + getResources().getString(R.string.secTime));
             timeLeft = millisUntilFinished;
 
         }

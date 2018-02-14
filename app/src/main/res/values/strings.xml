@@ -2,6 +2,7 @@
 
 
     <string name="app_name">MathPower</string>
+    <string name="secTime">Sec</string>
 
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>

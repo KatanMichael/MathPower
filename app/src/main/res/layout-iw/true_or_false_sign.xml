@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bluebackground"
+
+    >
+
+    <ImageView
+        android:id="@+id/star_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:elevation="15dp"
+        android:src="@drawable/star"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/five_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:elevation="15dp"
+        android:src="@drawable/fiverow"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/ten_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:elevation="15dp"
+        android:src="@drawable/tenrow"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/sign_score_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/score"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/sign_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/sign_score_TV"
+        android:text="@string/time"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/sign_signTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/sign_leftOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sign_signTV"
+        android:layout_alignBottom="@+id/sign_signTV"
+        android:layout_marginEnd="25dp"
+        android:layout_toStartOf="@+id/sign_signTV"
+        android:text="X + Y"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/sign_rightOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sign_signTV"
+        android:layout_alignBottom="@+id/sign_signTV"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/sign_signTV"
+        android:text="X + Y"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/sign_true"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/sign_leftOp"
+        android:layout_marginTop="150dp"
+        android:layout_toStartOf="@+id/sign_signTV"
+        android:background="@drawable/button_frame2"
+        android:text="@string/true_sign" />
+
+    <Button
+        android:id="@+id/sign_false"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_alignBottom="@+id/sign_true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/sign_signTV"
+        android:background="@drawable/button_frame2"
+        android:text="@string/false_sign" />
+
+    <ImageView
+        android:id="@+id/trueFalse_heart1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/hearticon"
+
+        />
+
+    <ImageView
+        android:id="@+id/trueFalse_heart2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_toRightOf="@id/trueFalse_heart1"
+        android:src="@drawable/hearticon"
+
+        />
+
+    <ImageView
+        android:id="@+id/trueFalse_heart3"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/trueFalse_heart2"
+        android:src="@drawable/hearticon" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/right_answer_anim"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/ten_row"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:visibility="invisible"
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="ThumbsUp-azul-gris-2.json"
+
+
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/wrong_answer_anim"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="360dp"
+        android:visibility="invisible"
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="sad_one.json"
+
+
+        />
+
+
+</RelativeLayout>
